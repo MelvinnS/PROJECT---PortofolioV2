@@ -21,7 +21,7 @@ const webDevShowcase = [
   {
     data: featuredProjectsData.find((p) => p.id === 'portfolio')!,
     thumbnail: '/assets/creative/portofolio.png',
-    demoUrl: 'https://project-portfolio-ten-rosy.vercel.app/',
+    demoUrl: 'melvinportofoliov2.vercel.app',
   },
   {
     data: featuredProjectsData.find((p) => p.id === 'restofinder')!,
