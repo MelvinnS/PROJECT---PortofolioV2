@@ -13,4 +13,8 @@ declare module '*.png' {
 declare module 'meshline' {
   export const MeshLineGeometry: any;
   export const MeshLineMaterial: any;
-}ud
+}
+
+declare module 'swiper/css';
+declare module 'swiper/css/pagination';
+declare module 'swiper/css/navigation';

@@ -83,9 +83,9 @@ const GraphicDesignDetail: React.FC<GraphicDesignDetailProps> = ({
       <div className="max-w-[1180px] mx-auto px-6 mb-4 sm:mb-6 flex justify-start">
         <Link
           to="/#creative"
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.15] border border-white/12 backdrop-blur-md text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-all shadow-sm hover:border-[#00d4ff]/40 group w-fit active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.15] border border-white/12 backdrop-blur-md text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-all shadow-sm hover:border-[#d4a373]/40 group w-fit active:scale-95 cursor-pointer"
         >
-          <ChevronLeft className="w-4 h-4 text-[#00d4ff] group-hover:-translate-x-0.5 transition-transform" />
+          <ChevronLeft className="w-4 h-4 text-[#d4a373] group-hover:-translate-x-0.5 transition-transform" />
           <span>Back to Creative Works</span>
         </Link>
       </div>
@@ -275,7 +275,7 @@ const GraphicDesignDetail: React.FC<GraphicDesignDetailProps> = ({
         }
         .hero-preview-card:hover {
           transform: translateY(-6px) scale(1.03) rotate(-0.5deg);
-          box-shadow: 0 28px 50px -18px rgba(0, 212, 255, 0.35);
+          box-shadow: 0 28px 50px -18px rgba(212, 163, 115, 0.35);
           animation-play-state: paused, paused;
         }
         .hero-preview-card img {
@@ -315,7 +315,7 @@ const GraphicDesignDetail: React.FC<GraphicDesignDetailProps> = ({
         .project-toggle-btn.is-active {
           background: var(--gradient);
           color: #fff;
-          box-shadow: 0 8px 20px -8px rgba(0, 212, 255, 0.5);
+          box-shadow: 0 8px 20px -8px rgba(212, 163, 115, 0.5);
         }
         .project-toggle-btn:not(.is-active):hover {
           color: #fff;
@@ -334,7 +334,7 @@ const GraphicDesignDetail: React.FC<GraphicDesignDetailProps> = ({
         }
         .gallery-item:hover {
           transform: translateY(-4px);
-          border-color: #00d4ff;
+          border-color: #d4a373;
         }
 
         @media (prefers-reduced-motion: reduce) {

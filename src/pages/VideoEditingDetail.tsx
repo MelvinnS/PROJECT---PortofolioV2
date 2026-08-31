@@ -236,9 +236,9 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
       <div className="max-w-[1180px] mx-auto px-6 mb-4 sm:mb-6 flex justify-start">
         <Link
           to="/#creative"
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.15] border border-white/12 backdrop-blur-md text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-all shadow-sm hover:border-[#00d4ff]/40 group w-fit active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.15] border border-white/12 backdrop-blur-md text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-all shadow-sm hover:border-[#d4a373]/40 group w-fit active:scale-95 cursor-pointer"
         >
-          <ChevronLeft className="w-4 h-4 text-[#00d4ff] group-hover:-translate-x-0.5 transition-transform" />
+          <ChevronLeft className="w-4 h-4 text-[#d4a373] group-hover:-translate-x-0.5 transition-transform" />
           <span>Back to Creative Works</span>
         </Link>
       </div>
@@ -381,7 +381,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           height: 100%;
           width: 0%;
           background: var(--gradient);
-          box-shadow: 0 0 12px rgba(0,212,255,0.6);
+          box-shadow: 0 0 12px rgba(212, 163, 115,0.6);
         }
 
         .ve-counter {
@@ -410,7 +410,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           position: relative;
           transition: background 0.3s ease, height 0.3s ease;
         }
-        .ve-rail-dot.is-active { background: #00d4ff; height: 2.75rem; }
+        .ve-rail-dot.is-active { background: #d4a373; height: 2.75rem; }
         .ve-rail-num {
           position: absolute;
           left: 0.75rem;
@@ -424,7 +424,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           transition: opacity 0.25s ease;
         }
         .ve-rail-dot:hover .ve-rail-num, .ve-rail-dot.is-active .ve-rail-num { opacity: 1; }
-        .ve-rail-dot.is-active .ve-rail-num { color: #00d4ff; }
+        .ve-rail-dot.is-active .ve-rail-num { color: #d4a373; }
 
         /* ---------- REEL PANELS ---------- */
         .ve-panel {
@@ -461,7 +461,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.08em;
-          color: #00d4ff;
+          color: #d4a373;
           margin-top: 0.5rem;
         }
 
@@ -479,7 +479,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           cursor: pointer;
           transition: all 0.25s ease;
         }
-        .ve-play-btn:hover { border-color: #00d4ff; color: #00d4ff; gap: 0.7rem; }
+        .ve-play-btn:hover { border-color: #d4a373; color: #d4a373; gap: 0.7rem; }
 
         .ve-thumb-btn {
           position: relative;
@@ -508,7 +508,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
         .ve-thumb-tint {
           position: absolute;
           inset: 0;
-          background: linear-gradient(160deg, rgba(0,212,255,0.16), rgba(0,0,0,0.28));
+          background: linear-gradient(160deg, rgba(212, 163, 115,0.16), rgba(0,0,0,0.28));
           mix-blend-mode: multiply;
           transition: opacity 0.7s ease;
         }
@@ -534,8 +534,8 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
         }
         .ve-thumb-btn:hover .ve-thumb-play {
           transform: translate(-50%, -50%) scale(1.08);
-          background: rgba(0,212,255,0.9);
-          border-color: #00d4ff;
+          background: rgba(212, 163, 115,0.9);
+          border-color: #d4a373;
           opacity: 1;
         }
         .ve-duration {
@@ -560,7 +560,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           transform: translateX(-50%);
         }
         .process-line-bg { height: 100%; background: var(--border); }
-        .process-line-fill { height: 0%; background: var(--gradient); box-shadow: 0 0 10px rgba(0,212,255,0.5); transition: height 0.1s linear; }
+        .process-line-fill { height: 0%; background: var(--gradient); box-shadow: 0 0 10px rgba(212, 163, 115,0.5); transition: height 0.1s linear; }
 
         .process-steps { display: flex; flex-direction: column; }
         .process-row {
@@ -596,9 +596,9 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
         }
         .process-row.is-visible .process-node {
           background: var(--gradient);
-          border-color: #00d4ff;
+          border-color: #d4a373;
           color: #fff;
-          box-shadow: 0 0 0 6px rgba(0,212,255,0.12);
+          box-shadow: 0 0 0 6px rgba(212, 163, 115,0.12);
         }
         .process-row:hover .process-node { transform: translate(-50%, 0) scale(1.12); }
 
@@ -610,7 +610,7 @@ const VideoEditingDetail: React.FC<VideoEditingDetailProps> = ({
           padding: 1.25rem 1.5rem;
           transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
         }
-        .process-row:hover .process-card { border-color: rgba(0,212,255,0.4); transform: translateY(-3px); }
+        .process-row:hover .process-card { border-color: rgba(212, 163, 115,0.4); transform: translateY(-3px); }
         .process-card-title { font-weight: 700; font-size: 1.0625rem; margin-bottom: 0.4rem; }
         .process-card-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.55; }
 

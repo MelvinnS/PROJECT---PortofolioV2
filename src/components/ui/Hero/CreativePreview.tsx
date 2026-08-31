@@ -15,7 +15,7 @@ export const CreativePreview: React.FC = () => {
       {/* Header with label and inline CTA link */}
       <div className="creative-preview-header">
         <div className="creative-preview-label">
-          <Camera className="w-3.5 h-3.5 text-[#00d4ff]" />
+          <Camera className="w-3.5 h-3.5 text-[#d4a373]" />
           <span>Visual Work</span>
         </div>
         <Link to="/creative/photography" className="creative-preview-cta">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Github, Figma, ExternalLink, Check, Droplets, CreditCard, BarChart2, User, RefreshCw, Gift, Book, Tag, MapPin, Bell } from 'lucide-react';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -21,6 +22,11 @@ const webDevShowcase = [
     data: featuredProjectsData.find((p) => p.id === 'portfolio')!,
     thumbnail: '/assets/creative/portofolio.png',
     demoUrl: 'https://project-portfolio-ten-rosy.vercel.app/',
+  },
+  {
+    data: featuredProjectsData.find((p) => p.id === 'restofinder')!,
+    thumbnail: '/assets/creative/restofinder.png',
+    demoUrl: 'https://techtest-restofinder.vercel.app/',
   },
 ];
 
@@ -72,9 +78,16 @@ export const ProjectDetailPage: React.FC = () => {
                         <span key={i}>{t}</span>
                       ))}
                     </div>
-                    <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="wd-card-cta">
-                      <ExternalLink className="w-4 h-4" /> Live Demo
-                    </a>
+                    <div className="wd-card-actions">
+                      <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="wd-card-cta">
+                        <ExternalLink className="w-4 h-4" /> Live Demo
+                      </a>
+                      {data.githubUrl && (
+                        <a href={data.githubUrl} target="_blank" rel="noopener noreferrer" className="wd-card-cta wd-card-cta-secondary">
+                          <Github className="w-4 h-4" /> GitHub
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -139,7 +152,7 @@ export const ProjectDetailPage: React.FC = () => {
             text-decoration: none;
             transition: all 0.2s ease;
           }
-          .wd-back-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(0,212,255,0.4); }
+          .wd-back-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(212, 163, 115,0.4); }
           .wd-hero-content {
             position: absolute;
             left: 0;
@@ -186,7 +199,7 @@ export const ProjectDetailPage: React.FC = () => {
           }
           .wd-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(0,212,255,0.45);
+            border-color: rgba(212, 163, 115,0.45);
             box-shadow: 0 25px 50px rgba(0,0,0,0.4);
           }
           .wd-card-thumb {
@@ -224,16 +237,28 @@ export const ProjectDetailPage: React.FC = () => {
             border: 1px solid var(--border);
             color: var(--text-dim);
           }
+          .wd-card-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+          }
           .wd-card-cta {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--blue, #00d4ff);
+            color: var(--blue, #d4a373);
             transition: gap 0.2s ease;
           }
           .wd-card-cta:hover { gap: 0.7rem; }
+          .wd-card-cta-secondary {
+            color: var(--text-dim);
+          }
+          .wd-card-cta-secondary:hover {
+            color: #fff;
+          }
         `}</style>
       </main>
     );

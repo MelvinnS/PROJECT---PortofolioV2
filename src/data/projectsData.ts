@@ -54,6 +54,33 @@ export const featuredProjectsData: Project[] = [
     ],
     galleryScreens: ['/assets/projects/coverPORTFOLIO.jpg'],
     reflection: 'Building my own portfolio end-to-end was the most complete expression of every skill I have developed as a creative developer.'
+  },
+  {
+    id: 'restofinder',
+    title: 'RestoFinder',
+    tagline: 'A frontend technical test project for discovering restaurants.',
+    description: 'A React-based restaurant finder app built as a frontend technical test, focused on clean component structure and a smooth browsing experience.',
+    coverImage: '/assets/creative/restofinder.png',
+    tech: ['React', 'TypeScript', 'CSS3', 'Vercel'],
+    demoUrl: 'https://techtest-restofinder.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/FrontendDevReactjs-Melvin-Andrea-Ismiananta',
+    problem: 'Needed to demonstrate frontend development skills through a real-world restaurant discovery use case within a technical test.',
+    solution: 'A responsive React application for browsing and finding restaurants, built with clean, maintainable component architecture.',
+    role: 'Frontend Developer',
+    roleTasks: [
+      'Built the complete React + TypeScript frontend.',
+      'Implemented responsive layout and component structure.',
+      'Deployed the project on Vercel.'
+    ],
+    process: 'Developed as part of a frontend technical test, focusing on code quality, structure, and user experience.',
+    features: [
+      { title: 'Restaurant listing and search' },
+      { title: 'Responsive layout' },
+      { title: 'Clean component architecture' },
+      { title: 'Live demo deployment on Vercel' }
+    ],
+    galleryScreens: ['/assets/creative/restofinder.png'],
+    reflection: 'RestoFinder helped sharpen my ability to quickly translate requirements into a clean, working React application.'
   }
 ];
 

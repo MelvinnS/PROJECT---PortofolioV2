@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
           <div className="hero2-stack">
             {/* Tilted Floating Accent Badge */}
             <div className="hero2-floating-badge">
-              <Sparkles className="w-3.5 h-3.5 text-[#00d4ff]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#d4a373]" />
               <span>UI/UX & Code</span>
             </div>
 

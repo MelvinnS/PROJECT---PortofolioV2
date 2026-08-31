@@ -127,8 +127,8 @@
 //         />
 //         <defs>
 //           <linearGradient id="lanyardGradient" x1="0" y1="0" x2="0" y2="1">
-//             <stop offset="0%" stopColor="#00d4ff" />
-//             <stop offset="100%" stopColor="#7b2cbf" />
+//             <stop offset="0%" stopColor="#d4a373" />
+//             <stop offset="100%" stopColor="#a67c52" />
 //           </linearGradient>
 //         </defs>
 //       </svg>

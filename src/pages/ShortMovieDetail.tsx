@@ -39,7 +39,7 @@ const ShortMovieDetail: React.FC<ShortMovieDetailProps> = ({
         <div className="nf-hero-fade-bottom" />
 
         <Link to="/#creative" className="nf-back-btn">
-          <ChevronLeft className="w-4 h-4 text-[#00d4ff] group-hover:-translate-x-0.5 transition-transform" />
+          <ChevronLeft className="w-4 h-4 text-[#d4a373] group-hover:-translate-x-0.5 transition-transform" />
           <span>Back to Creative Works</span>
         </Link>
 
@@ -210,7 +210,7 @@ const ShortMovieDetail: React.FC<ShortMovieDetailProps> = ({
         .nf-back-btn:hover {
           background: rgba(255,255,255,0.15);
           color: #fff;
-          border-color: rgba(0,212,255,0.4);
+          border-color: rgba(212, 163, 115,0.4);
         }
         .nf-hero-content {
           position: absolute;
@@ -284,7 +284,7 @@ const ShortMovieDetail: React.FC<ShortMovieDetailProps> = ({
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .nf-row-nav:hover { color: #fff; border-color: #00d4ff; }
+        .nf-row-nav:hover { color: #fff; border-color: #d4a373; }
 
         .nf-row {
           display: flex;
@@ -313,7 +313,7 @@ const ShortMovieDetail: React.FC<ShortMovieDetailProps> = ({
           transform: scale(1.08);
           z-index: 5;
           box-shadow: 0 24px 48px -12px rgba(0,0,0,0.6);
-          border-color: rgba(0,212,255,0.4);
+          border-color: rgba(212, 163, 115,0.4);
         }
         .nf-card-img {
           position: absolute;

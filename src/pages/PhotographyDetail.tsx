@@ -322,7 +322,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
         {/* 2. TITLE & SUBTITLE - CENTERED */}
         <section className="w-full mb-20 sm:mb-24 md:mb-28">
           <div className="hero-text-block">
-            <span className="text-xs sm:text-sm font-semibold tracking-widest text-[#00d4ff] uppercase block">
+            <span className="text-xs sm:text-sm font-semibold tracking-widest text-[#d4a373] uppercase block">
               Creative Works / Visual Storytelling
             </span>
 
@@ -340,7 +340,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
         <section className="w-full mb-24 sm:mb-28 md:mb-32">
           {/* Gallery Header - CENTERED */}
           <div className="gallery-header">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#00d4ff] block">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#d4a373] block">
               Gallery
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -356,7 +356,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
             {galleryPhotos.map((photo, idx) => (
               <div
                 key={photo.id}
-                className="photography-masonry-item group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#00d4ff]/40 hover:shadow-xl hover:shadow-[#00d4ff]/10"
+                className="photography-masonry-item group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#d4a373]/40 hover:shadow-xl hover:shadow-[#d4a373]/10"
                 onClick={() => setLightboxIndex(idx)}
               >
                 <img
@@ -371,7 +371,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3.5 sm:p-4">
-                  <span className="text-[9px] sm:text-[10px] font-semibold tracking-wider text-[#00d4ff] uppercase mb-1">
+                  <span className="text-[9px] sm:text-[10px] font-semibold tracking-wider text-[#d4a373] uppercase mb-1">
                     {photo.category}
                   </span>
                   <div className="flex items-center justify-between text-white">
@@ -379,7 +379,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
                       {photo.title}
                     </h4>
                     <div className="p-1 sm:p-1.5 rounded-full bg-white/10 backdrop-blur-md">
-                      <Expand className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#00d4ff]" />
+                      <Expand className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#d4a373]" />
                     </div>
                   </div>
                 </div>
@@ -404,7 +404,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
         <section className="fav-section">
           {/* Section Header */}
           <div className="fav-header">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#00d4ff] block">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#d4a373] block">
               Favorite Works
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -416,7 +416,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
             {favoriteWorks.map((work) => (
               <div
                 key={work.id}
-                className="fav-card group relative rounded-2xl overflow-hidden border border-white/10 bg-[var(--surface)] hover:border-[#00d4ff]/30 transition-all duration-300 hover:shadow-xl"
+                className="fav-card group relative rounded-2xl overflow-hidden border border-white/10 bg-[var(--surface)] hover:border-[#d4a373]/30 transition-all duration-300 hover:shadow-xl"
               >
                 {/* Image */}
                 <div className="relative h-52 sm:h-60 overflow-hidden">
@@ -426,7 +426,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs text-white/90 border border-white/10 flex items-center gap-1.5">
-                    <Camera className="w-3.5 h-3.5 text-[#00d4ff]" />
+                    <Camera className="w-3.5 h-3.5 text-[#d4a373]" />
                     <span>{work.label}</span>
                   </div>
                 </div>
@@ -434,7 +434,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
                 {/* Body Content - CENTERED */}
                 <div className="fav-card-body">
                   <div className="fav-card-text">
-                    <span className="text-xs font-semibold tracking-wider text-[#00d4ff] uppercase block">
+                    <span className="text-xs font-semibold tracking-wider text-[#d4a373] uppercase block">
                       {work.tag}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold text-white">
@@ -455,7 +455,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
                           setLightboxIndex(0);
                         }
                       }}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-[#00d4ff] transition-colors cursor-pointer w-fit"
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-[#d4a373] transition-colors cursor-pointer w-fit"
                     >
                       <span>View Frame</span>
                       <ArrowRight className="w-4 h-4" />
@@ -470,8 +470,8 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
         {/* 6. CALL TO ACTION - CENTERED */}
         <section className="cta-section">
           <div className="cta-box relative w-full rounded-2xl sm:rounded-3xl text-center overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02]">
-            <div className="absolute -top-20 -left-20 w-56 h-56 bg-[#00d4ff]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-20 -right-20 w-56 h-56 bg-[#7b2cbf]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-56 h-56 bg-[#d4a373]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-56 h-56 bg-[#a67c52]/10 rounded-full blur-3xl pointer-events-none" />
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
               Interested in working together?
@@ -481,7 +481,7 @@ export const PhotographyDetail: React.FC<PhotographyDetailProps> = () => {
             </p>
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#00d4ff] to-[#7b2cbf] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#00d4ff]/20 hover:shadow-[#00d4ff]/40 hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#d4a373] to-[#a67c52] text-white font-semibold text-xs sm:text-sm shadow-md shadow-[#d4a373]/20 hover:shadow-[#d4a373]/40 hover:-translate-y-0.5 transition-all"
             >
               <Paperclip className="w-4 h-4" />
               <span>Contact Me</span>

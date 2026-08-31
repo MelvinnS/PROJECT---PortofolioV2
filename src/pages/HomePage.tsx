@@ -36,7 +36,7 @@ interface CreativeCardProps {
 }
 
 const CARD_ACCENTS = [
-  { border: 'rgba(0,212,255,0.55)', glow: 'rgba(0,212,255,0.16)' },
+  { border: 'rgba(212, 163, 115,0.55)', glow: 'rgba(212, 163, 115,0.16)' },
   { border: 'rgba(123,44,191,0.55)', glow: 'rgba(123,44,191,0.16)' },
   { border: 'rgba(0,230,160,0.5)', glow: 'rgba(0,230,160,0.14)' },
   { border: 'rgba(255,140,0,0.5)', glow: 'rgba(255,140,0,0.14)' },
@@ -136,14 +136,14 @@ const CreativeCard: React.FC<CreativeCardProps> = ({ cat, index }) => {
       {/* Card Info Footer — spacing lega */}
       <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-5 sm:py-5">
         <div className="min-w-0 flex flex-col gap-1">
-          <h3 className="text-sm sm:text-lg font-bold text-white truncate group-hover:text-[#00d4ff] transition-colors duration-300">
+          <h3 className="text-sm sm:text-lg font-bold text-white truncate group-hover:text-[#d4a373] transition-colors duration-300">
             {cat.title}
           </h3>
           <span className="text-[11px] sm:text-xs text-[var(--text-dim)] font-medium">
             Explore Collection
           </span>
         </div>
-        <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--text-dim)] group-hover:text-white group-hover:border-[#00d4ff]/40 transition-all duration-300">
+        <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--text-dim)] group-hover:text-white group-hover:border-[#d4a373]/40 transition-all duration-300">
           <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-0.5 transition-transform" />
         </div>
       </div>
@@ -458,16 +458,16 @@ export const HomePage: React.FC = () => {
             <p>Open for full-time roles, freelance projects, and creative collaborations.</p>
             <div className="contact-links">
               <a href="https://wa.me/6282231258463"target="_blank" className="contact-pill">
-                <Mail className="w-4 h-4 text-[#00d4ff]" /> Chat Me
+                <Mail className="w-4 h-4 text-[#d4a373]" /> Chat Me
               </a>
               <a href="https://linkedin.com/in/melvin-andrea" target="_blank" rel="noopener noreferrer" className="contact-pill">
-                <Linkedin className="w-4 h-4 text-[#00d4ff]" /> LinkedIn
+                <Linkedin className="w-4 h-4 text-[#d4a373]" /> LinkedIn
               </a>
               <a href="https://github.com/MelvinnS" target="_blank" rel="noopener noreferrer" className="contact-pill">
-                <Github className="w-4 h-4 text-[#00d4ff]" /> GitHub
+                <Github className="w-4 h-4 text-[#d4a373]" /> GitHub
               </a>
               <a href="https://instagram.com/el_falskie" target="_blank" rel="noopener noreferrer" className="contact-pill">
-                <Instagram className="w-4 h-4 text-[#00d4ff]" /> Instagram
+                <Instagram className="w-4 h-4 text-[#d4a373]" /> Instagram
               </a>
             </div>
           </div>
