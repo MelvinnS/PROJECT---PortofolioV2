@@ -14,14 +14,19 @@ import { projectsData, featuredProjectsData } from '../data/projectsData';
 // hanya thumbnail & demo URL yang di-override sesuai aset/link yang diminta untuk halaman ini.
 const webDevShowcase = [
   {
+    data: featuredProjectsData.find((p) => p.id === 'dk-catering')!,
+    thumbnail: '/assets/creative/cattering.png',
+    demoUrl: 'https://cattering-nine.vercel.app',
+  },
+  {
     data: featuredProjectsData.find((p) => p.id === 'orastrix')!,
     thumbnail: '/assets/creative/orastrix.png',
     demoUrl: 'https://project-landing-page-orastrix.vercel.app/',
   },
   {
     data: featuredProjectsData.find((p) => p.id === 'portfolio')!,
-    thumbnail: '/assets/creative/portofolio.png',
-    demoUrl: 'https://project-portfolio-ten-rosy.vercel.app/',
+    thumbnail: '/assets/creative/portofolio2.png',
+    demoUrl: 'https://melvinportofoliov2.vercel.app/',
   },
   {
     data: featuredProjectsData.find((p) => p.id === 'restofinder')!,
@@ -40,7 +45,7 @@ export const ProjectDetailPage: React.FC = () => {
       <main className="pb-16">
         {/* HERO — pratinjau website full-bleed + fade gelap di bawah + judul */}
         <section className="wd-hero">
-          <img src="/assets/creative/orastrix.png" alt={project.title} className="wd-hero-img" />
+          <img src="/assets/creative/cattering.png" alt={project.title} className="wd-hero-img" />
           <div className="wd-hero-fade-top" />
           <div className="wd-hero-fade-bottom" />
 

@@ -2,6 +2,33 @@ import { Project } from '../types';
 
 export const featuredProjectsData: Project[] = [
   {
+    id: 'dk-catering',
+    title: 'DK-Catering',
+    tagline: 'MSME catering website for easy menu browsing and order tracking.',
+    description: 'A premium dark-themed product landing page for Orastrix, built with modern web technologies. Features animated sections, responsive layout, and a conversion-focused hero.',
+    coverImage: '/assets/projects/coverORASTRIX.jpg',
+    tech: ['React JS', 'Vite', 'Tailwind CSS', 'NestJS', 'Prisma', 'MySQL'],
+    demoUrl: 'cattering-nine.vercel.app',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---DK-Cattering',
+    problem: 'Enterprise products often suffer from generic, unconvincing landing pages that fail to convey the product\'s premium positioning.',
+    solution: 'A cinematic, dark-themed landing page with animated visuals, clear value propositions, and strong CTAs designed to convert.',
+    role: 'Frontend Developer & UI/UX Designer',
+    roleTasks: [
+      'Designed and developed the complete landing page.',
+      'Implemented animations and responsive breakpoints.',
+      'Deployed on Vercel with optimised performance.'
+    ],
+    process: 'Started with a visual mood board, built a high-fidelity Figma prototype, then translated it directly into code.',
+    features: [
+      { title: 'Animated hero section' },
+      { title: 'Responsive dark design system' },
+      { title: 'Feature showcase grid' },
+      { title: 'Live demo deployment on Vercel' }
+    ],
+    galleryScreens: ['/assets/projects/cattering.png'],
+    reflection: 'Orastrix sharpened my skills in translating editorial design concepts into polished production code.'
+  },
+  {
     id: 'orastrix',
     title: 'Orastrix',
     tagline: 'A sleek enterprise landing page built for digital transformation.',
@@ -9,7 +36,7 @@ export const featuredProjectsData: Project[] = [
     coverImage: '/assets/projects/coverORASTRIX.jpg',
     tech: ['React', 'TypeScript', 'CSS3', 'Vercel'],
     demoUrl: 'https://project-landing-page-orastrix.vercel.app/',
-    githubUrl: 'https://github.com/MelvinnS/PROJECT---Trashback',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---Landing-Page-Orastrix',
     problem: 'Enterprise products often suffer from generic, unconvincing landing pages that fail to convey the product\'s premium positioning.',
     solution: 'A cinematic, dark-themed landing page with animated visuals, clear value propositions, and strong CTAs designed to convert.',
     role: 'Frontend Developer & UI/UX Designer',
@@ -36,7 +63,7 @@ export const featuredProjectsData: Project[] = [
     coverImage: '/assets/projects/coverPORTFOLIO.jpg',
     tech: ['React', 'TypeScript', 'Tailwind v4', 'Vite', 'Vercel'],
     demoUrl: 'https://project-portofolio-ten-rosy.vercel.app/',
-    githubUrl: 'https://github.com/MelvinnS/PROJECT---Portofolio',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---PortofolioV2',
     problem: 'Generic portfolio templates fail to communicate the personality and technical depth of a creative developer.',
     solution: 'A handcrafted portfolio with interactive physics, editorial photography galleries, and category-specific creative showcase pages.',
     role: 'Full-Stack Developer & Designer',
