@@ -28,6 +28,40 @@ export const featuredProjectsData: Project[] = [
     galleryScreens: ['/assets/projects/cattering.png'],
     reflection: 'Orastrix sharpened my skills in translating editorial design concepts into polished production code.'
   },
+
+
+
+{
+    id: 'Template for gf',
+    title: 'Template for gf (Forsale)',
+    tagline: 'A Game Boy-style pixel-art landing page featuring an interactive quiz for shared memories.',
+    description: 'A premium dark-themed product landing page for Orastrix, built with modern web technologies. Features animated sections, responsive layout, and a conversion-focused hero.',
+    coverImage: '/assets/projects/coverORASTRIX.jpg',
+    tech: ['React JS', 'Vite', 'Tailwind CSS'],
+    demoUrl: 'https://template-4gf.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/FORSALE---Template-for-gf',
+    problem: 'Enterprise products often suffer from generic, unconvincing landing pages that fail to convey the product\'s premium positioning.',
+    solution: 'A cinematic, dark-themed landing page with animated visuals, clear value propositions, and strong CTAs designed to convert.',
+    role: 'Frontend Developer & UI/UX Designer',
+    roleTasks: [
+      'Designed and developed the complete landing page.',
+      'Implemented animations and responsive breakpoints.',
+      'Deployed on Vercel with optimised performance.'
+    ],
+    process: 'Started with a visual mood board, built a high-fidelity Figma prototype, then translated it directly into code.',
+    features: [
+      { title: 'Animated hero section' },
+      { title: 'Responsive dark design system' },
+      { title: 'Feature showcase grid' },
+      { title: 'Live demo deployment on Vercel' }
+    ],
+    galleryScreens: ['/assets/projects/4gf.png'],
+    reflection: 'Orastrix sharpened my skills in translating editorial design concepts into polished production code.'
+  },
+
+
+
+
   {
     id: 'orastrix',
     title: 'Orastrix',

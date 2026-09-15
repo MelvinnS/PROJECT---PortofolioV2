@@ -19,6 +19,11 @@ const webDevShowcase = [
     demoUrl: 'https://cattering-nine.vercel.app',
   },
   {
+    data: featuredProjectsData.find((p) => p.id === 'Template for gf')!,
+    thumbnail: '/assets/creative/4gf.png',
+    demoUrl: 'https://template-4gf.vercel.app/',
+  },
+  {
     data: featuredProjectsData.find((p) => p.id === 'orastrix')!,
     thumbnail: '/assets/creative/orastrix.png',
     demoUrl: 'https://project-landing-page-orastrix.vercel.app/',
