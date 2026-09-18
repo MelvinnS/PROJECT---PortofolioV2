@@ -13,6 +13,13 @@ import { projectsData, featuredProjectsData } from '../data/projectsData';
 // Teks tagline/tech diambil dari featuredProjectsData yang sudah ada (bukan karangan baru),
 // hanya thumbnail & demo URL yang di-override sesuai aset/link yang diminta untuk halaman ini.
 const webDevShowcase = [
+
+{
+    data: featuredProjectsData.find((p) => p.id === 'banksampah')!,
+    thumbnail: '/assets/creative/banksampahcover.png',
+    demoUrl: 'https://banksampahdigital-sooty.vercel.app/',
+  },
+
   {
     data: featuredProjectsData.find((p) => p.id === 'dk-catering')!,
     thumbnail: '/assets/creative/cattering.png',

@@ -16,6 +16,7 @@ import {
   Award,
   BookOpen,
   IdCard,
+  Play,
 } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
 import { creativeCategoriesData } from '../data/creativeData';
@@ -35,117 +36,51 @@ interface CreativeCardProps {
   index: number;
 }
 
-const CARD_ACCENTS = [
-  { border: 'rgba(212, 163, 115,0.55)', glow: 'rgba(212, 163, 115,0.16)' },
-  { border: 'rgba(123,44,191,0.55)', glow: 'rgba(123,44,191,0.16)' },
-  { border: 'rgba(0,230,160,0.5)', glow: 'rgba(0,230,160,0.14)' },
-  { border: 'rgba(255,140,0,0.5)', glow: 'rgba(255,140,0,0.14)' },
-];
-
-const CreativeCard: React.FC<CreativeCardProps> = ({ cat, index }) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [transform, setTransform] = useState<string>(
-    'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
-  );
-  const [glowPos, setGlowPos] = useState<{ x: number; y: number; opacity: number }>({
-    x: 0,
-    y: 0,
-    opacity: 0,
-  });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const accent = CARD_ACCENTS[index % CARD_ACCENTS.length];
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!cardRef.current) return;
-    if (window.matchMedia('(hover: none)').matches) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -4;
-    const rotateY = ((x - centerX) / centerX) * 4;
-
-    setTransform(
-      `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(6px) scale3d(1.015, 1.015, 1.015)`
-    );
-    setGlowPos({ x, y, opacity: 1 });
-  };
-
-  const handleMouseEnter = () => {
-    if (window.matchMedia('(hover: none)').matches) return;
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)');
-    setGlowPos((prev) => ({ ...prev, opacity: 0 }));
-  };
-
+const CreativeCard: React.FC<CreativeCardProps> = ({ cat }) => {
   return (
     <Link
-      ref={cardRef}
       to={`/creative/${cat.id}`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="creative-card group relative flex flex-col rounded-2xl overflow-hidden bg-[var(--bg-alt)] border-2 transition-[border-color,box-shadow] duration-300 ease-out"
-      style={{
-        transform: transform,
-        transformStyle: 'preserve-3d',
-        borderColor: isHovered ? accent.border : 'rgba(255,255,255,0.10)',
-        boxShadow: isHovered ? `0 20px 45px -15px ${accent.glow}` : 'none',
-        transition: isHovered
-          ? 'transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease'
-          : 'transform 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease',
-      }}
+      className="creative-card group relative flex flex-col rounded-xl bg-[var(--bg-alt)] p-3 sm:p-4 transition-colors duration-300 ease-out hover:bg-white/[0.06]"
     >
-      {/* Cursor-following radial gradient glow */}
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-500 z-10"
-        style={{
-          opacity: glowPos.opacity,
-          background: `radial-gradient(220px circle at ${glowPos.x}px ${glowPos.y}px, ${accent.glow}, transparent 70%)`,
-        }}
-      />
-
-
-      {/* Image / thumbnail area */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-black/40">
+      {/* Cover art — square, Spotify-style */}
+      <div className="relative w-full aspect-square overflow-hidden rounded-lg shadow-lg bg-black/40">
         <img
           src={cat.coverImage}
           alt={cat.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
 
         {/* Ambient dark gradient vignette over image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent" />
 
         {/* Tag badge top-left */}
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+        <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
           <span className="text-[9px] sm:text-[11px] font-semibold text-white/90 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 tracking-wide">
             {cat.tag}
           </span>
         </div>
+
+        {/* Play button — hidden by default, fades & slides in on hover */}
+        <div
+          className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center
+                     bg-[var(--blue)] text-black shadow-[0_8px_20px_rgba(0,0,0,0.45)]
+                     opacity-0 translate-y-2 scale-90
+                     transition-all duration-300 ease-out
+                     group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
+                     group-hover:hover:scale-110"
+        >
+          <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-black translate-x-[1px]" />
+        </div>
       </div>
 
-      {/* Card Info Footer — spacing lega */}
-      <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-5 sm:py-5">
-        <div className="min-w-0 flex flex-col gap-1">
-          <h3 className="text-sm sm:text-lg font-bold text-white truncate group-hover:text-[#d4a373] transition-colors duration-300">
-            {cat.title}
-          </h3>
-          <span className="text-[11px] sm:text-xs text-[var(--text-dim)] font-medium">
-            Explore Collection
-          </span>
-        </div>
-        <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--text-dim)] group-hover:text-white group-hover:border-[#d4a373]/40 transition-all duration-300">
-          <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-0.5 transition-transform" />
-        </div>
+      {/* Card Info Footer — Spotify-style: title + subtitle below cover */}
+      <div className="flex flex-col gap-1 pt-3 sm:pt-4 px-0.5">
+        <h3 className="text-sm sm:text-base font-bold text-white truncate transition-colors duration-300 group-hover:text-[var(--blue)]">
+          {cat.title}
+        </h3>
+        <span className="text-[11px] sm:text-xs text-[var(--text-dim)] font-medium">
+          Explore Collection
+        </span>
       </div>
     </Link>
   );
