@@ -57,7 +57,7 @@ export const ProjectDetailPage: React.FC = () => {
       <main className="pb-16">
         {/* HERO — pratinjau website full-bleed + fade gelap di bawah + judul */}
         <section className="wd-hero">
-          <img src="/assets/creative/cattering.png" alt={project.title} className="wd-hero-img" />
+          <img src="/assets/creative/orastrix.png" alt={project.title} className="wd-hero-img" />
           <div className="wd-hero-fade-top" />
           <div className="wd-hero-fade-bottom" />
 
