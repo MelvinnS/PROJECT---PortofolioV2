@@ -16,7 +16,7 @@ const webDevShowcase = [
 
 {
     data: featuredProjectsData.find((p) => p.id === 'banksampah')!,
-    thumbnail: '/assets/creative/banksampahcover.png',
+    thumbnail: '/assets/creative/orastrix.png',
     demoUrl: 'https://banksampahdigital-sooty.vercel.app/',
   },
 
