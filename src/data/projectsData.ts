@@ -7,7 +7,7 @@ export const featuredProjectsData: Project[] = [
     title: 'Bank Sampah',
     tagline: 'Username admin : admin_banksampah  Password : admin123',
     description: 'A premium dark-themed product landing page for Orastrix, built with modern web technologies. Features animated sections, responsive layout, and a conversion-focused hero.',
-    coverImage: '/assets/projects/coverORASTRIX.jpg',
+    coverImage: '/assets/projects/banksampahcover.png',
     tech: ['React JS', 'Vite', 'Tailwind CSS', 'NestJS', 'Prisma', 'MySQL'],
     demoUrl: 'https://banksampahdigital-sooty.vercel.app/',
     githubUrl: 'https://github.com/MelvinnS/PROJECT---Bank-Sampah',
@@ -26,7 +26,7 @@ export const featuredProjectsData: Project[] = [
       { title: 'Feature showcase grid' },
       { title: 'Live demo deployment on Vercel' }
     ],
-    galleryScreens: ['/assets/projects/cattering.png'],
+    galleryScreens: ['/assets/projects/banksampahcover.png'],
     reflection: 'Orastrix sharpened my skills in translating editorial design concepts into polished production code.'
   },
 
@@ -38,7 +38,7 @@ export const featuredProjectsData: Project[] = [
     title: 'DK-Catering',
     tagline: 'MSME catering website for easy menu browsing and order tracking.',
     description: 'A premium dark-themed product landing page for Orastrix, built with modern web technologies. Features animated sections, responsive layout, and a conversion-focused hero.',
-    coverImage: '/assets/projects/coverORASTRIX.jpg',
+    coverImage: '/assets/projects/cattering.png',
     tech: ['React JS', 'Vite', 'Tailwind CSS', 'NestJS', 'Prisma', 'MySQL'],
     demoUrl: 'cattering-nine.vercel.app',
     githubUrl: 'https://github.com/MelvinnS/PROJECT---DK-Cattering',
@@ -68,7 +68,7 @@ export const featuredProjectsData: Project[] = [
     title: 'Template for gf (Forsale)',
     tagline: 'A Game Boy-style pixel-art landing page featuring an interactive quiz for shared memories.',
     description: 'A premium dark-themed product landing page for Orastrix, built with modern web technologies. Features animated sections, responsive layout, and a conversion-focused hero.',
-    coverImage: '/assets/projects/coverORASTRIX.jpg',
+    coverImage: '/assets/projects/4gf.png',
     tech: ['React JS', 'Vite', 'Tailwind CSS'],
     demoUrl: 'https://template-4gf.vercel.app/',
     githubUrl: 'https://github.com/MelvinnS/FORSALE---Template-for-gf',
