@@ -1,0 +1,329 @@
+<!-- <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrashBack — Case Study | Melvin Andrea</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+<style>
+  :root{
+    --bg:#08080f; --surface:rgba(255,255,255,0.04); --surface-strong:rgba(255,255,255,0.07);
+    --border:rgba(255,255,255,0.09); --blue:#00d4ff; --purple:#7b2cbf;
+    --gradient:linear-gradient(135deg,#00d4ff,#7b2cbf);
+    --text:#f4f4f8; --text-dim:#9a9ab0; --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.65;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:900px;margin:0 auto;padding:0 6%;}
+  .grad-text{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+  .glow{position:fixed;border-radius:50%;filter:blur(130px);opacity:0.22;z-index:-1;pointer-events:none;}
+  .glow-1{width:520px;height:520px;background:var(--blue);top:-140px;left:-160px;}
+  .glow-2{width:520px;height:520px;background:var(--purple);top:20%;right:-200px;}
+
+  .topbar{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 6%;background:rgba(8,8,15,0.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:background .3s ease;}
+  .topbar .container{max-width:900px;display:flex;justify-content:space-between;align-items:center;padding:0;}
+  .back-link{font-size:0.9rem;color:var(--text-dim);display:flex;align-items:center;gap:0.5rem;transition:all .25s ease;}
+  .back-link:hover{color:var(--blue);gap:0.7rem;}
+
+  .cs-hero{padding:10rem 6% 3rem;text-align:center;position:relative;}
+  .cs-tag{color:var(--blue);font-weight:600;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;opacity:0;animation:fadeUp .7s ease forwards;}
+  .cs-hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);margin-bottom:0.9rem;opacity:0;animation:fadeUp .7s ease .1s forwards;}
+  .cs-tagline{color:var(--text-dim);font-size:1.05rem;max-width:480px;margin:0 auto 2.2rem;opacity:0;animation:fadeUp .7s ease .2s forwards;}
+  .cs-meta{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem;opacity:0;animation:fadeUp .7s ease .3s forwards;}
+  .cs-meta span{padding:0.4rem 0.9rem;border-radius:50px;font-size:0.8rem;background:var(--surface);border:1px solid var(--border);color:var(--text-dim);}
+  .cs-links{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;opacity:0;animation:fadeUp .7s ease .4s forwards;}
+  .cs-links a{padding:0.7rem 1.4rem;border-radius:50px;font-size:0.86rem;font-weight:600;border:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;transition:all .3s ease;}
+  .cs-links a:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,212,255,0.06);transform:translateY(-2px);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  .phone-frame{
+    position:relative;
+    width:272px;height:556px;
+    margin:0 auto;
+    border-radius:46px;
+    background:linear-gradient(155deg,#1c1c26,#050508);
+    padding:12px;
+    box-shadow:
+      0 0 0 1.5px rgba(255,255,255,0.08) inset,
+      0 30px 70px -15px rgba(0,0,0,0.65),
+      0 0 90px rgba(0,212,255,0.14),
+      0 0 90px rgba(123,44,191,0.10);
+    opacity:0;animation:fadeUp .8s ease .5s forwards;
+  }
+  .phone-frame::before{
+    content:'';position:absolute;left:-3px;top:110px;width:3px;height:28px;background:#0c0c12;border-radius:2px 0 0 2px;
+  }
+  .phone-frame::after{
+    content:'';position:absolute;right:-3px;top:150px;width:3px;height:60px;background:#0c0c12;border-radius:0 2px 2px 0;
+  }
+  .phone-screen{
+    position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#000;
+  }
+  .phone-screen img{width:100%;height:100%;object-fit:cover;}
+  .notch{
+    position:absolute;top:12px;left:50%;transform:translateX(-50%);
+    width:96px;height:24px;background:#050508;border-radius:16px;z-index:20;
+    display:flex;align-items:center;justify-content:flex-end;padding-right:10px;gap:6px;
+  }
+  .notch::after{content:'';width:7px;height:7px;border-radius:50%;background:#12131a;box-shadow:inset 0 0 3px rgba(0,212,255,0.4);}
+  .home-indicator{
+    position:absolute;bottom:7px;left:50%;transform:translateX(-50%);
+    width:110px;height:4px;border-radius:4px;background:rgba(255,255,255,0.35);z-index:20;
+  }
+
+  section.cs-section{padding:5rem 6% 0;max-width:900px;margin:0 auto;}
+  section.cs-section:last-of-type{padding-bottom:3rem;}
+  .cs-section h2{font-size:1.4rem;margin-bottom:0.7rem;}
+  .cs-section p{color:var(--text-dim);margin-bottom:0.4rem;font-size:0.98rem;max-width:620px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem 3rem;}
+  @media(max-width:700px){.two-col{grid-template-columns:1fr;gap:2.4rem;}}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .feature-list{list-style:none;display:grid;gap:0.7rem;margin-top:0.6rem;}
+  .feature-list li{display:flex;gap:0.7rem;align-items:flex-start;color:var(--text-dim);font-size:0.95rem;transition:color .25s ease, transform .25s ease;}
+  .feature-list li:hover{color:var(--text);transform:translateX(4px);}
+  .feature-list i{color:var(--blue);margin-top:0.22rem;font-size:0.85rem;}
+
+  .role-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:1.8rem 2rem;transition:all .3s ease;
+  }
+  .role-card:hover{border-color:rgba(0,212,255,0.3);background:var(--surface-strong);transform:translateY(-3px);}
+
+  .tech-row{display:flex;flex-wrap:wrap;gap:0.55rem;margin-top:0.6rem;}
+  .tech-row span{padding:0.5rem 1rem;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:0.85rem;transition:all .25s ease;}
+  .tech-row span:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+
+  .divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:4.5rem 0 0;}
+
+  .gallery-wrap{position:relative;padding:0.5rem 0 1rem;}
+  .gallery-swiper{
+    width:100%;max-width:640px;margin:0 auto;padding:2rem 0 3rem;
+    overflow:visible;
+  }
+  .gallery-swiper .swiper-slide{
+    width:220px;border-radius:32px;overflow:hidden;
+    background:linear-gradient(155deg,#1c1c26,#050508);
+    padding:10px;
+    box-shadow:0 0 0 1.5px rgba(255,255,255,0.07) inset, 0 25px 50px -10px rgba(0,0,0,0.55);
+    transition:transform .4s ease, box-shadow .4s ease, opacity .4s ease;
+    opacity:0.35;
+    transform:scale(0.86);
+  }
+  .gallery-swiper .swiper-slide-active{
+    opacity:1;transform:scale(1);
+    box-shadow:0 0 0 1.5px rgba(255,255,255,0.1) inset, 0 30px 60px -10px rgba(0,0,0,0.65), 0 0 60px rgba(0,212,255,0.15);
+  }
+  .gallery-swiper .slide-screen{
+    position:relative;border-radius:24px;overflow:hidden;aspect-ratio:9/19.5;background:#000;
+  }
+  .gallery-swiper .slide-screen img{width:100%;height:100%;object-fit:cover;}
+  .gallery-swiper .slide-notch{
+    position:absolute;top:9px;left:50%;transform:translateX(-50%);
+    width:74px;height:18px;background:#050508;border-radius:12px;z-index:5;
+  }
+
+  .swiper-button-next, .swiper-button-prev{
+    color:var(--text) !important;
+    width:42px !important;height:42px !important;
+    background:var(--surface);border:1px solid var(--border);border-radius:50%;
+    backdrop-filter:blur(8px);transition:all .3s ease;
+  }
+  .swiper-button-next:hover, .swiper-button-prev:hover{border-color:var(--blue);color:var(--blue) !important;background:rgba(0,212,255,0.08);}
+  .swiper-button-next::after, .swiper-button-prev::after{font-size:16px !important;font-weight:700;}
+  .swiper-pagination-bullet{background:var(--text-dim) !important;opacity:0.5;}
+  .swiper-pagination-bullet-active{background:var(--blue) !important;opacity:1;}
+
+  footer{padding:3.5rem 6% 2.5rem;text-align:center;color:var(--text-dim);font-size:0.85rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<div class="topbar">
+  <div class="container">
+    <a href="../index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
+    <span style="font-size:0.9rem;color:var(--text-dim);">Case Study</span>
+  </div>
+</div>
+
+<section class="cs-hero">
+  <div class="cs-tag">Mobile App · Sustainability</div>
+  <h1>Trash<span class="grad-text">Back</span></h1>
+  <p class="cs-tagline">A smart waste app that turns recycling into a daily habit.</p>
+  <div class="cs-meta"><span>Flutter</span><span>Dart</span><span>Figma</span></div>
+ 
+
+  <div class="cs-links">
+    <a href="https://github.com/MelvinnS/PROJECT---Trashback" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> GitHub
+    </a>
+    <a href="https://www.figma.com/design/qn6pX2Gk86Cw3HVtuzgScA/Prototype-TrashBack?node-id=0-1&t=9J9Mzmis7wZ6PRj0-1" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-figma"></i> Figma
+    </a>
+</div> -->
+<!-- <a href="LINK_DEMO" target="_blank" rel="noopener noreferrer">
+    <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+</a> -->
+
+
+  <!-- <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="notch"></div>
+      <img src="../assets/projects/trashback1.png" alt="TrashBack app main screen" onerror="this.src='';this.style.background='linear-gradient(160deg,rgba(0,212,255,0.15),rgba(123,44,191,0.2))'">
+      <div class="home-indicator"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section reveal">
+  <h2>Overview</h2>
+  <p>TrashBack helps users build better recycling habits through a simple, rewarding app experience. It spans product planning, UI/UX design, and Flutter development.</p>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <div class="two-col">
+    <div>
+      <h2>Problem</h2>
+      <p>People want to recycle, but lack accessible tools to make the habit stick.</p>
+    </div>
+    <div>
+      <h2>Solution</h2>
+      <p>Waste info, EcoCash rewards, and a clean interface that keep users coming back.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <div class="role-card">
+    <h2>My Role</h2>
+    <p>Team Leader — product planning, UI/UX design in Figma, and Flutter development.</p>
+    <ul class="feature-list" style="margin-top:1.2rem;">
+      <li><i class="fa-solid fa-check"></i> Designed the complete UI/UX in Figma</li>
+      <li><i class="fa-solid fa-check"></i> Built the app using Flutter & Dart</li>
+      <li><i class="fa-solid fa-check"></i> Planned the concept and Business Model Canvas</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <h2>Development Process</h2>
+  <p>Research and BMC first, then Figma design, then Flutter build — tested iteratively for a consistent experience.</p>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><i class="fa-solid fa-location-dot"></i> Map of nearby waste collection points</li>
+    <li><i class="fa-solid fa-chart-line"></i> Personal recycling activity tracker</li>
+    <li><i class="fa-solid fa-bell"></i> Reminders to keep the habit consistent</li>
+    <li><i class="fa-solid fa-user"></i> Simple, guided onboarding flow</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <h2>Gallery</h2>
+  <p>A closer look at the app, screen by screen.</p>
+</section>
+
+<div class="gallery-wrap reveal">
+  <div class="swiper gallery-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback1.png" alt="TrashBack screen 1" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback2.png" alt="TrashBack screen 2" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback3.png" alt="TrashBack screen 3" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback4.png" alt="TrashBack screen 4" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback5.png" alt="TrashBack screen 5" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback6.png" alt="TrashBack screen 6" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback7.png" alt="TrashBack screen 7" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback8.png" alt="TrashBack screen 8" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback9.png" alt="TrashBack screen 9" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback10.png" alt="TrashBack screen 10" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback11.png" alt="TrashBack screen 11" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback12.png" alt="TrashBack screen 12" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback13.png" alt="TrashBack screen 13" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback14.png" alt="TrashBack screen 14" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback15.png" alt="TrashBack screen 15" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback16.png" alt="TrashBack screen 16" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback17.png" alt="TrashBack screen 17" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback18.png" alt="TrashBack screen 18" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback19.png" alt="TrashBack screen 19" onerror="this.style.display='none'"></div></div>
+      <div class="swiper-slide"><div class="slide-screen"><div class="slide-notch"></div><img src="../assets/projects/trashback20.png" alt="TrashBack screen 20" onerror="this.style.display='none'"></div></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <h2>Tech Stack</h2>
+  <div class="tech-row">
+    <span><i class="fa-solid fa-mobile"></i> Flutter</span>
+    <span><i class="fa-solid fa-code"></i> Dart</span>
+    <span><i class="fa-brands fa-figma"></i> Figma</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="cs-section reveal">
+  <h2>Reflection</h2>
+  <p>Great products need more than code — they need real understanding of users. This project sharpened my product thinking, UI/UX, and mobile development skills.</p>
+</section>
+
+<section class="cs-section reveal" style="text-align:center;padding-top:1rem;">
+  <a href="../index.html#projects" class="back-link" style="justify-content:center;"><i class="fa-solid fa-arrow-left"></i> Back to all projects</a>
+</section>
+
+<footer>© 2026 Melvin Andrea Ismiananta.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+<script>
+  new Swiper('.gallery-swiper', {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    speed: 500,
+    grabCursor: true,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>  -->

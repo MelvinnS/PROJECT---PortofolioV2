@@ -1,0 +1,58 @@
+/* Panggung terang dengan grid yang sama seperti hero */
+.intro-expand {
+  background-color: #fff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Judul di dalam frame: font pixel + hard shadow oranye seperti name box */
+.intro-expand .scroll-expand__title {
+  font-family: 'Pixelify Sans', 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 0.06em 0.06em 0 #ff7a3d;
+}
+
+.intro-expand .scroll-expand__hint {
+  font-family: 'Pixelify Sans', 'Space Grotesk', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: #141414;
+  animation: intro-hint-bob 0.9s steps(2, end) infinite;
+}
+@keyframes intro-hint-bob {
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+/*
+  Overlay = Hero. Dia memudar masuk di atas poster dengan kertas grid putih
+  yang sama seperti .sb-wrap, sehingga hasil akhirnya identik dengan hero asli.
+*/
+.intro-expand .scroll-expand__overlay {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  text-align: initial;
+  background-color: #fff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.intro-expand .scroll-expand__overlay .sb-hero {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-expand .scroll-expand__hint {
+    animation: none;
+  }
+}
