@@ -1,0 +1,235 @@
+/* ── Projects Directory Page (5 Folders Grid Layout) ───────────────── */
+
+.pw-page {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+  min-height: 100vh;
+  padding: 6.5rem 1.5rem 5rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.pw-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* ── Top Header (explore my work! + FEATURED WORKS) ── */
+.pw-header {
+  margin-bottom: 3.5rem;
+  text-align: left;
+}
+
+.pw-anno {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #555555;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.pw-title {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #141414;
+  line-height: 0.98;
+  margin: 0 0 0.8rem 0;
+}
+
+.pw-sub {
+  font-size: 1rem;
+  color: #666666;
+  max-width: 520px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── 2-Column Folders Grid (Maksimal 2 baris berdampingan) ── */
+.pw-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5rem 2.5rem;
+  width: 100%;
+}
+
+/* Item 5 centered on row 3 if 5 items */
+.pw-folder-item:nth-child(5):last-child {
+  grid-column: 1 / -1;
+  max-width: 500px;
+  justify-self: center;
+  width: 100%;
+}
+
+/* ── Single Folder Card Item ── */
+.pw-folder-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.22s ease;
+}
+
+.pw-folder-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Folder Shell */
+.pw-folder-shell {
+  position: relative;
+  width: 100%;
+}
+
+/* Top Tab */
+.pw-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 28px 0 16px;
+  background: var(--folder-tab-bg, #141414);
+  color: var(--folder-tab-fg, #ffffff);
+  border: 2.5px solid #141414;
+  border-bottom: none;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: -2.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.pw-tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+
+/* Folder Main Container */
+.pw-folder-box {
+  background: var(--folder-body-bg, #fafafa);
+  border: 2.5px solid #141414;
+  box-shadow: 6px 6px 0 #141414;
+  border-radius: 0 8px 8px 8px;
+  padding: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.22s ease;
+}
+
+.pw-folder-item:hover .pw-folder-box {
+  box-shadow: 8px 8px 0 #141414;
+}
+
+/* Preview Frame Inside Folder */
+.pw-preview-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #1a1a1a;
+  border: 2px solid #141414;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.pw-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.pw-folder-item:hover .pw-preview-img {
+  transform: scale(1.03);
+}
+
+/* Tape sticker on folder preview corners */
+.pw-tape {
+  position: absolute;
+  width: 65px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 4;
+  pointer-events: none;
+}
+.pw-tape-tl {
+  top: -8px;
+  left: -12px;
+  transform: rotate(-35deg);
+}
+.pw-tape-tr {
+  top: -8px;
+  right: -12px;
+  transform: rotate(35deg);
+}
+
+/* Text Meta Below Folder (Centered like in photo) */
+.pw-meta {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.pw-meta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #141414;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.2;
+}
+
+.pw-meta-desc {
+  font-size: 0.85rem;
+  color: #666666;
+  line-height: 1.55;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* ── Responsive Rules (Maksimal 2 baris berdampingan) ── */
+@media (max-width: 720px) {
+  .pw-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1.25rem;
+  }
+  .pw-folder-box {
+    padding: 1rem;
+    box-shadow: 4px 4px 0 #141414;
+  }
+  .pw-meta-title {
+    font-size: 1.05rem;
+  }
+  .pw-meta-desc {
+    font-size: 0.78rem;
+  }
+  .pw-tab {
+    height: 34px;
+    padding: 0 20px 0 12px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pw-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .pw-folder-item:nth-child(5):last-child {
+    max-width: 100%;
+  }
+}
