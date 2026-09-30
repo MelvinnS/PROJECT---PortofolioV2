@@ -212,7 +212,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       shell.classList.add('active');
       shell.classList.add('entering');
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current);
-      enterTimerRef.current = window.setTimeout(() => {
+      enterTimerRef.current = setTimeout(() => {
         shell.classList.remove('entering');
       }, ANIMATION_CONFIG.ENTER_TRANSITION_MS);
 
