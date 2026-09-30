@@ -42,7 +42,7 @@ const FOLDERS: FolderCard[] = [
     fg: '#ffffff',
     tabBg: '#17B8DE', // Cyan
     tabFg: '#141414',
-    link: `/projects/${projectsData[0]?.id || 'pdam'}`,
+    link: '/projects/mobile-app',
   },
   {
     id: 'web',
@@ -50,12 +50,12 @@ const FOLDERS: FolderCard[] = [
     title: 'Web Developer',
     description: 'Responsive websites and web platforms built with React, TypeScript and modern styling.',
     meta: 'REACT · TYPESCRIPT',
-    image: featuredProjectsData[0]?.coverImage ?? '/assets/projects/banksampahcover.png',
+    image: featuredProjectsData[0]?.coverImage ?? '/assets/creative/banksampahcover.png',
     bg: '#F5B82A', // Yellow/Gold
     fg: '#141414',
     tabBg: '#141414', // Black
     tabFg: '#ffffff',
-    link: `/projects/${featuredProjectsData[0]?.id || 'banksampah'}`,
+    link: '/projects/web-dev',
   },
   {
     id: 'photography',

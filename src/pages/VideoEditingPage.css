@@ -1,0 +1,667 @@
+/* ── Video & Editing Page (Netflix-Inspired Neo-Brutalist Layout) ── */
+
+.ve-page {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+  min-height: 100vh;
+  padding-top: 5.5rem;
+  padding-bottom: 6rem;
+  position: relative;
+  overflow-x: hidden;
+  color: #141414;
+}
+
+.ve-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Top Navigation Bar ── */
+.ve-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ve-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #141414;
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 3px 3px 0 #141414;
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.ve-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #141414;
+  background: #f7f7f7;
+}
+
+.ve-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #FF2B85;
+  color: #ffffff;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid #141414;
+  box-shadow: 2.5px 2.5px 0 #141414;
+}
+
+/* ── Header ── */
+.ve-header {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.ve-anno {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #555555;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.ve-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0.2rem 0 0.8rem 0;
+  text-transform: uppercase;
+}
+
+.ve-desc {
+  font-size: 1.05rem;
+  color: #555555;
+  max-width: 580px;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+/* ── Filter Controls ── */
+.ve-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.ve-filter-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 2px solid #141414;
+  background: #ffffff;
+  color: #141414;
+  box-shadow: 3px 3px 0 #141414;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.ve-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #141414;
+}
+
+.ve-filter-btn--active {
+  background: #141414;
+  color: #ffffff;
+  box-shadow: 4px 4px 0 #FF2B85;
+}
+
+.ve-filter-btn--active:hover {
+  box-shadow: 5px 5px 0 #FF2B85;
+}
+
+/* ── Netflix-Style Hero Spotlight Billboard ── */
+.ve-billboard {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  min-height: 420px;
+  border: 3px solid #141414;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 #141414;
+  margin-bottom: 4rem;
+  background: #000000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ve-billboard-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.4, 1), opacity 0.4s ease;
+}
+
+.ve-billboard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0.25) 80%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+.ve-billboard-content {
+  position: relative;
+  z-index: 10;
+  padding: 2.5rem 3rem;
+  max-width: 640px;
+  color: #ffffff;
+}
+
+.ve-top10-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #E50914;
+  color: #ffffff;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+  border: 1.5px solid #ffffff;
+}
+
+.ve-billboard-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 0.8rem 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.ve-billboard-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.ve-meta-pill {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
+
+.ve-billboard-synopsis {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin: 0 0 1.6rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.ve-billboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.ve-btn-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #141414;
+  border: 2.5px solid #141414;
+  box-shadow: 3.5px 3.5px 0 #141414;
+  border-radius: 8px;
+  padding: 0.65rem 1.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.ve-btn-play:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #141414;
+  background: #FFD026;
+}
+
+.ve-btn-trailer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ve-btn-trailer:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Spotlight Quick Switcher Dots */
+.ve-spotlight-nav {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 15;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.ve-spotlight-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ve-spotlight-dot--active {
+  background: #FF2B85;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px #FF2B85;
+}
+
+/* ── Section Titles ── */
+.ve-section {
+  margin-bottom: 4.5rem;
+}
+
+.ve-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ve-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #141414;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.ve-section-tag {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+/* ── Netflix Card Rails (Grid) ── */
+.ve-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.ve-movie-card {
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 5px 5px 0 #141414;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.25s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.ve-movie-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 8px 8px 0 #141414;
+}
+
+/* Poster / Thumbnail Viewport */
+.ve-card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #000000;
+  overflow: hidden;
+}
+
+.ve-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.ve-movie-card:hover .ve-card-img {
+  transform: scale(1.06);
+}
+
+.ve-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.ve-movie-card:hover .ve-play-overlay {
+  opacity: 1;
+}
+
+.ve-play-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #FFD026;
+  border: 2.5px solid #141414;
+  box-shadow: 3px 3px 0 #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #141414;
+  transform: scale(0.8);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ve-movie-card:hover .ve-play-circle {
+  transform: scale(1);
+}
+
+.ve-duration-badge {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ve-category-badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: #FF2B85;
+  color: #ffffff;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1.5px solid #141414;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Card Body */
+.ve-card-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #ffffff;
+}
+
+.ve-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.45rem 0;
+}
+
+.ve-card-synopsis {
+  font-size: 0.86rem;
+  color: #555555;
+  line-height: 1.55;
+  margin: 0 0 1.2rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Genre / Role Tags */
+.ve-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.2rem;
+}
+
+.ve-tag {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  background: #f3f4f6;
+  color: #141414;
+  border: 1.5px solid #141414;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Card Actions */
+.ve-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1.5px dashed #e5e7eb;
+}
+
+.ve-watch-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #FF2B85;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ve-fav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #141414;
+  box-shadow: 2px 2px 0 #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ve-fav-btn:hover {
+  transform: scale(1.1);
+  background: #FF2B85;
+  color: #ffffff;
+}
+
+/* ── Workflow Callout Strip ── */
+.ve-strip {
+  background: #141414;
+  color: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 6px 6px 0 #FF2B85;
+  border-radius: 16px;
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.ve-strip-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem 0;
+}
+
+.ve-strip-p {
+  color: #aaaaaa;
+  font-size: 0.92rem;
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ── Video Player Modal ── */
+.ve-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ve-modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  background: #000000;
+}
+
+.ve-modal-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #141414;
+  color: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #141414;
+  font-weight: 900;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .ve-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ve-billboard {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 640px) {
+  .ve-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .ve-billboard {
+    aspect-ratio: auto;
+    min-height: 480px;
+  }
+  .ve-billboard-content {
+    padding: 1.5rem;
+  }
+  .ve-title {
+    font-size: 2.2rem;
+  }
+}

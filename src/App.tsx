@@ -8,6 +8,11 @@ import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { CreativeDetailPage } from './pages/CreativeDetailPage';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
+import MobileAppPage from './pages/MobileAppPage';
+import WebDevPage from './pages/WebDevPage';
+import PhotographyPage from './pages/PhotographyPage';
+import VideoEditingPage from './pages/VideoEditingPage';
+import GraphicDesignPage from './pages/GraphicDesignPage';
 import { PageTransitionProvider } from './components/layout/PageTransition';
 import { useLenis } from './hooks/useLenis';
 import type Lenis from 'lenis';
@@ -47,6 +52,20 @@ export const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/mobile-app" element={<MobileAppPage />} />
+        <Route path="/projects/web-dev" element={<WebDevPage />} />
+        <Route path="/projects/tresbekasli" element={<WebDevPage />} />
+        <Route path="/projects/photography" element={<PhotographyPage />} />
+        <Route path="/creative/photography" element={<PhotographyPage />} />
+        <Route path="/projects/video-editing" element={<VideoEditingPage />} />
+        <Route path="/creative/videography-editing" element={<VideoEditingPage />} />
+        <Route path="/creative/video-editing" element={<VideoEditingPage />} />
+        <Route path="/creative/short-movie" element={<VideoEditingPage />} />
+        <Route path="/projects/graphic-designer" element={<GraphicDesignPage />} />
+        <Route path="/projects/graphic-design" element={<GraphicDesignPage />} />
+        <Route path="/creative/graphic-design" element={<GraphicDesignPage />} />
+        <Route path="/creative/design-trashback" element={<GraphicDesignPage />} />
+        <Route path="/creative/design-parentstalk" element={<GraphicDesignPage />} />
         <Route path="/projects/:id" element={<ProjectDetailPage />} />
         <Route path="/creative/:category" element={<CreativeDetailPage />} />
       </Routes>

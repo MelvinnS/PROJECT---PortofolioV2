@@ -1,25 +1,41 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Github, Figma, ExternalLink, Check, Droplets, CreditCard, BarChart2, User, RefreshCw, Gift, Book, Tag, MapPin, Bell } from 'lucide-react';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Github,
+  Figma,
+  ExternalLink,
+  Check,
+  Droplets,
+  CreditCard,
+  BarChart2,
+  User,
+  Sparkles,
+  Smartphone,
+  Layers,
+  Play,
+  Pause,
+  Maximize2,
+  X,
+  Star,
+  AlertTriangle,
+  Lightbulb,
+  Recycle,
+  Gift,
+  BookOpen,
+  ShoppingBag,
+} from 'lucide-react';
 import { projectsData, featuredProjectsData } from '../data/projectsData';
+import './CaseStudyDetail.css';
 
-// Konten showcase "Web Developer" (route/id tetap 'tresbekasli').
-// Teks tagline/tech diambil dari featuredProjectsData yang sudah ada (bukan karangan baru),
-// hanya thumbnail & demo URL yang di-override sesuai aset/link yang diminta untuk halaman ini.
+// Web Developer showcase (for tresbekasli)
 const webDevShowcase = [
-
-{
+  {
     data: featuredProjectsData.find((p) => p.id === 'banksampah')!,
     thumbnail: '/assets/creative/orastrix.png',
     demoUrl: 'https://banksampahdigital-sooty.vercel.app/',
   },
-
   {
     data: featuredProjectsData.find((p) => p.id === 'dk-catering')!,
     thumbnail: '/assets/creative/cattering.png',
@@ -49,19 +65,110 @@ const webDevShowcase = [
 
 export const ProjectDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const project = projectsData.find((p) => p.id === id) || projectsData[0];
 
-  // ---- Halaman khusus "Web Developer" (dulu Tresbekasli) — hanya untuk project ini ----
+  // Screen controller state
+  const [activeScreenIndex, setActiveScreenIndex] = useState(0);
+  const [isAutoplay, setIsAutoplay] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [completedTasks, setCompletedTasks] = useState<number[]>([0, 1, 2]);
+  const [stampSpins, setStampSpins] = useState(0);
+  const [stickerAlert, setStickerAlert] = useState<string | null>(null);
+
+  // 3D tilt coordinates
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const phoneRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setActiveScreenIndex(0);
+    setIsAutoplay(false);
+  }, [id]);
+
+  // Autoplay timer
+  useEffect(() => {
+    if (!isAutoplay || !project.galleryScreens?.length) return;
+    const timer = setInterval(() => {
+      setActiveScreenIndex((prev) => (prev + 1) % project.galleryScreens.length);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, [isAutoplay, project.galleryScreens]);
+
+  // 3D Mouse Tilt on phone mockup
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!phoneRef.current) return;
+    const rect = phoneRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setTilt({
+      x: -(y / rect.height) * 16,
+      y: (x / rect.width) * 16,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
+  const nextScreen = () => {
+    if (!project.galleryScreens?.length) return;
+    setActiveScreenIndex((prev) => (prev + 1) % project.galleryScreens.length);
+  };
+
+  const prevScreen = () => {
+    if (!project.galleryScreens?.length) return;
+    setActiveScreenIndex((prev) => (prev - 1 + project.galleryScreens.length) % project.galleryScreens.length);
+  };
+
+  const toggleTask = (index: number) => {
+    setCompletedTasks((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
+  const triggerSticker = (msg: string) => {
+    setStickerAlert(msg);
+    setTimeout(() => setStickerAlert(null), 2500);
+  };
+
+  // Color theme per project
+  const isPDAM = project.id === 'pdam';
+  const themeColor = isPDAM ? '#17B8DE' : '#00C274';
+  const otherProjectId = isPDAM ? 'trashback' : 'pdam';
+  const otherProjectTitle = isPDAM ? 'TrashBack' : 'Layanan PDAM';
+
+  // Feature icons mapping
+  const getFeatureIcon = (index: number) => {
+    if (isPDAM) {
+      const icons = [
+        <Droplets className="w-5 h-5" />,
+        <CreditCard className="w-5 h-5" />,
+        <BarChart2 className="w-5 h-5" />,
+        <User className="w-5 h-5" />,
+      ];
+      return icons[index % icons.length];
+    } else {
+      const icons = [
+        <Recycle className="w-5 h-5" />,
+        <Gift className="w-5 h-5" />,
+        <BookOpen className="w-5 h-5" />,
+        <ShoppingBag className="w-5 h-5" />,
+      ];
+      return icons[index % icons.length];
+    }
+  };
+
+  // ---- Halaman khusus "Web Developer" (tresbekasli) ----
   if (project.id === 'tresbekasli') {
     return (
-      <main className="pb-16">
-        {/* HERO — pratinjau website full-bleed + fade gelap di bawah + judul */}
+      <main className="pb-16" style={{ background: '#ffffff' }}>
         <section className="wd-hero">
           <img src="/assets/creative/orastrix.png" alt={project.title} className="wd-hero-img" />
           <div className="wd-hero-fade-top" />
           <div className="wd-hero-fade-bottom" />
 
-          <Link to="/#projects" className="wd-back-btn">
+          <Link to="/projects" className="wd-back-btn">
             <ArrowLeft className="w-4 h-4" /> Back to Projects
           </Link>
 
@@ -74,12 +181,11 @@ export const ProjectDetailPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SHOWCASE — kartu tiap project web dengan tombol Live Demo */}
         <section className="section pt-10">
           <div className="section-inner">
             <div className="section-tag">Selected Builds</div>
             <h2 className="section-title">Live web projects</h2>
-            <p className="section-desc">Two projects, one goal — clean code paired with premium, considered design.</p>
+            <p className="section-desc">Projects crafted with clean code paired with premium, considered design.</p>
 
             <div className="wd-grid">
               {webDevShowcase.map(({ data, thumbnail, demoUrl }) => (
@@ -113,358 +219,478 @@ export const ProjectDetailPage: React.FC = () => {
         </section>
 
         <section className="cs-section text-center pt-8">
-          <Link to="/#projects" className="back-link justify-center">
+          <Link to="/projects" className="back-link justify-center">
             <ArrowLeft className="w-4 h-4" /> Back to all projects
           </Link>
         </section>
-
-        <style>{`
-          .wd-hero {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            min-height: 380px;
-            max-height: 82vh;
-            overflow: hidden;
-            background: #000;
-          }
-          .wd-hero-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-          }
-          .wd-hero-fade-top {
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 30%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);
-            pointer-events: none;
-          }
-          .wd-hero-fade-bottom {
-            position: absolute;
-            inset: auto 0 0 0;
-            height: 60%;
-            background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.88) 25%, rgba(0,0,0,0.35) 60%, transparent 100%);
-            pointer-events: none;
-          }
-          .wd-back-btn {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            z-index: 20;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            padding: 0.5rem 0.875rem;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            font-size: 0.8125rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            transition: all 0.2s ease;
-          }
-          .wd-back-btn:hover { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(212, 163, 115,0.4); }
-          .wd-hero-content {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 10;
-            padding: 0 6% 2.5rem;
-            max-width: 1180px;
-            margin: 0 auto;
-          }
-          .wd-hero-title {
-            font-weight: 800;
-            letter-spacing: -0.01em;
-            line-height: 1.05;
-            font-size: clamp(2rem, 5.5vw, 3.75rem);
-            text-shadow: 0 4px 24px rgba(0,0,0,0.6);
-            margin: 0;
-          }
-          .wd-hero-tagline {
-            margin-top: 0.75rem;
-            max-width: 560px;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.82);
-            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-          }
-          @media (max-width: 640px) {
-            .wd-hero { aspect-ratio: 4 / 5; min-height: 460px; }
-            .wd-hero-content { padding: 0 5% 2rem; }
-          }
-
-          .wd-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
-          }
-          .wd-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-            display: flex;
-            flex-direction: column;
-          }
-          .wd-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 163, 115,0.45);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-          }
-          .wd-card-thumb {
-            aspect-ratio: 16/10;
-            overflow: hidden;
-            background: #000;
-          }
-          .wd-card-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            transition: transform 0.6s ease;
-          }
-          .wd-card:hover .wd-card-thumb img { transform: scale(1.05); }
-          .wd-card-body {
-            padding: 1.6rem 1.7rem 1.8rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-          }
-          .wd-card-body h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-          .wd-card-body p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 1.2rem; flex: 1; }
-          .wd-card-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.4rem;
-          }
-          .wd-card-tech span {
-            font-size: 0.75rem;
-            padding: 0.3rem 0.7rem;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-          }
-          .wd-card-actions {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.25rem;
-          }
-          .wd-card-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--blue, #d4a373);
-            transition: gap 0.2s ease;
-          }
-          .wd-card-cta:hover { gap: 0.7rem; }
-          .wd-card-cta-secondary {
-            color: var(--text-dim);
-          }
-          .wd-card-cta-secondary:hover {
-            color: #fff;
-          }
-        `}</style>
       </main>
     );
   }
 
-  // ---- Template case-study generik (PDAM, TrashBack) — TIDAK diubah ----
+  // ---- TOTAL REDESIGN: Mobile App Case Study (PDAM & TrashBack) ----
+  const currentScreen = project.galleryScreens?.[activeScreenIndex] || project.coverImage;
+
   return (
-    <main className="pb-16">
-      {/* TOPBAR */}
-      <div className="topbar">
-        <div className="container-narrow">
-          <Link to="/#projects" className="back-link">
-            <ArrowLeft className="w-4 h-4" /> Back to Projects
-          </Link>
-          <span className="text-sm text-[var(--text-dim)]">Case Study</span>
-        </div>
-      </div>
+    <div
+      className="cs-page"
+      style={{ '--project-accent': themeColor } as React.CSSProperties}
+    >
+      <div className="cs-container">
 
-      {/* HERO */}
-      <section className="cs-hero">
-        <div className="cs-tag">Mobile App · Sustainability</div>
-        <h1>
-          {project.title.includes('PDAM') ? (
-            <>Layanan <span className="grad-text">PDAM</span></>
-          ) : project.title.includes('TrashBack') ? (
-            <>Trash<span className="grad-text">Back</span></>
-          ) : (
-            <span className="grad-text">{project.title}</span>
-          )}
-        </h1>
-        <p className="cs-tagline">{project.tagline}</p>
-        
-        <div className="cs-meta">
-          {project.tech.map((t, idx) => (
-            <span key={idx}>{t}</span>
-          ))}
-        </div>
+        {/* ── TOP NAV BAR ── */}
+        <div className="cs-top-nav">
+          <button
+            onClick={() => navigate('/projects/mobile-app')}
+            className="cs-back-btn"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to Mobile Apps
+          </button>
 
-        <div className="cs-links">
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <Github className="w-4 h-4" /> GitHub
-            </a>
-          )}
-          {project.figmaUrl && (
-            <a href={project.figmaUrl} target="_blank" rel="noopener noreferrer">
-              <Figma className="w-4 h-4" /> Figma
-            </a>
-          )}
-          {project.demoUrl && (
-            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-4 h-4" /> Live Demo
-            </a>
-          )}
-        </div>
-
-        {/* PHONE FRAME */}
-        {project.galleryScreens.length > 0 && (
-          <div className="phone-frame mt-8">
-            <div className="phone-screen">
-              <div className="notch" />
-              <img src={project.galleryScreens[0]} alt={`${project.title} screenshot preview`} />
-              <div className="home-indicator" />
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* OVERVIEW */}
-      <section className="cs-section">
-        <h2>Overview</h2>
-        <p>{project.description}</p>
-      </section>
-
-      <hr className="divider" />
-
-      {/* PROBLEM & SOLUTION */}
-      <section className="cs-section">
-        <div className="two-col">
-          <div>
-            <h2>Problem</h2>
-            <p>{project.problem}</p>
-          </div>
-          <div>
-            <h2>Solution</h2>
-            <p>{project.solution}</p>
+          <div className="cs-badge-pill">
+            <Smartphone className="w-3.5 h-3.5" />
+            <span>Mobile App Case Study</span>
           </div>
         </div>
-      </section>
 
-      <hr className="divider" />
-
-      {/* ROLE */}
-      <section className="cs-section">
-        <div className="role-card">
-          <h2>My Role</h2>
-          <p>{project.role}</p>
-          <ul className="feature-list mt-4">
-            {project.roleTasks.map((task, i) => (
-              <li key={i}>
-                <Check className="w-4 h-4" /> {task}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <hr className="divider" />
-
-      {/* PROCESS */}
-      <section className="cs-section">
-        <h2>Development Process</h2>
-        <p>{project.process}</p>
-      </section>
-
-      <hr className="divider" />
-
-      {/* FEATURES */}
-      <section className="cs-section">
-        <h2>Features</h2>
-        <ul className="feature-list">
-          {project.features.map((feat, i) => (
-            <li key={i}>
-              <Check className="w-4 h-4" /> {feat.title}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <hr className="divider" />
-
-      {/* GALLERY SLIDER */}
-      {project.galleryScreens.length > 0 && (
-        <section className="cs-section">
-          <h2>Gallery</h2>
-          <p className="mb-6 text-[var(--text-dim)] font-normal">A closer look at the app, screen by screen.</p>
-          
-          <div className="w-full py-4">
-            <Swiper
-              modules={[Pagination, Navigation]}
-              slidesPerView="auto"
-              spaceBetween={20}
-              centeredSlides={true}
-              loop={true}
-              pagination={{ clickable: true }}
-              navigation={true}
-              className="w-full max-w-[800px] h-[520px]"
+        {/* ── HERO SECTION ── */}
+        <header className="cs-hero-box">
+          {/* Floating Interactive Starburst Stamp */}
+          <div
+            className="cs-starburst-stamp"
+            onClick={() => setStampSpins((prev) => prev + 1)}
+            title="Click to spin!"
+          >
+            <svg
+              className="cs-stamp-svg"
+              viewBox="0 0 100 100"
+              style={{
+                filter: 'drop-shadow(3px 3px 0 #141414)',
+                transform: `rotate(${stampSpins * 90}deg)`,
+                transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              }}
             >
-              {project.galleryScreens.map((screen, idx) => (
-                <SwiperSlide key={idx} className="!w-[250px] !h-[500px]">
-                  <div className="phone-frame !w-[240px] !h-[480px]">
-                    <div className="phone-screen">
-                      <div className="notch" />
-                      <img src={screen} alt={`Screen ${idx + 1}`} className="w-full h-full object-cover" />
-                      <div className="home-indicator" />
-                    </div>
+              <polygon
+                points="50,0 63,14 82,9 85,28 100,38 91,54 100,71 83,77 78,96 60,90 50,100 38,89 20,93 18,74 2,64 10,48 2,31 19,25 24,6 42,12"
+                fill={themeColor}
+                stroke="#141414"
+                strokeWidth="2.5"
+              />
+              <circle cx="50" cy="50" r="18" fill="#141414" />
+              <text
+                x="50"
+                y="54"
+                textAnchor="middle"
+                fill="#ffffff"
+                fontSize="11"
+                fontWeight="900"
+                fontFamily="Space Grotesk, sans-serif"
+              >
+                PRO
+              </text>
+            </svg>
+          </div>
+
+          <span className="cs-anno">case study &amp; workflow ◜</span>
+          <h1 className="cs-title">{project.title}</h1>
+          <p className="cs-tagline">{project.tagline}</p>
+
+          {/* Action Links Bar */}
+          <div className="cs-action-row">
+            {project.figmaUrl && (
+              <a
+                href={project.figmaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cs-action-btn cs-action-btn--primary"
+              >
+                <Figma className="w-4 h-4" /> Figma Prototype
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cs-action-btn cs-action-btn--secondary"
+              >
+                <Github className="w-4 h-4" /> View Source
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cs-action-btn cs-action-btn--secondary"
+              >
+                <ExternalLink className="w-4 h-4" /> Live Demo
+              </a>
+            )}
+          </div>
+
+          {/* Interactive Stickers Row */}
+          <div className="cs-stickers-row">
+            <span
+              className="cs-interactive-sticker cs-sticker-cyan"
+              onClick={() => triggerSticker('⚡ Developed with Flutter & Dart for cross-platform performance!')}
+            >
+              <Smartphone className="w-3.5 h-3.5" /> Flutter &amp; Dart
+            </span>
+            <span
+              className="cs-interactive-sticker cs-sticker-yellow"
+              onClick={() => triggerSticker('🎨 Complete UI/UX system crafted in Figma from wireframe to hifi!')}
+            >
+              <Sparkles className="w-3.5 h-3.5" /> Figma UI/UX
+            </span>
+            <span
+              className="cs-interactive-sticker cs-sticker-pink"
+              onClick={() => triggerSticker(`📱 ${project.galleryScreens?.length || 18} unique interactive screens built!`)}
+            >
+              <Layers className="w-3.5 h-3.5" /> {project.galleryScreens?.length || 18} Screens
+            </span>
+            <span
+              className="cs-interactive-sticker cs-sticker-green"
+              onClick={() => triggerSticker('✅ Production-ready architecture and clean state management!')}
+            >
+              <Star className="w-3.5 h-3.5" /> 100% Tested
+            </span>
+          </div>
+
+          {/* Floating Sticker Alert Toast */}
+          {stickerAlert && (
+            <div
+              style={{
+                display: 'inline-block',
+                background: '#141414',
+                color: '#fff',
+                padding: '0.45rem 1.25rem',
+                borderRadius: '999px',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                fontFamily: 'Space Grotesk, sans-serif',
+                marginTop: '0.5rem',
+                animation: 'bounce 0.3s ease',
+              }}
+            >
+              {stickerAlert}
+            </div>
+          )}
+        </header>
+
+        {/* ── INTERACTIVE PHONE DEVICE SHOWCASE (CENTERPIECE) ── */}
+        <section className="cs-device-section">
+          <div className="cs-device-card">
+            {/* Stage with 3D Mouse Tilt */}
+            <div
+              className="cs-phone-stage"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                ref={phoneRef}
+                className="cs-phone-mockup"
+                style={{
+                  transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+                }}
+              >
+                <div className="cs-phone-screen">
+                  {/* Dynamic Island */}
+                  <div className="cs-phone-island" />
+
+                  {/* Active Screen */}
+                  <img
+                    src={currentScreen}
+                    alt={`${project.title} screen ${activeScreenIndex + 1}`}
+                    className="cs-phone-img"
+                  />
+
+                  {/* Bottom Indicator */}
+                  <div className="cs-phone-indicator" />
+                </div>
+              </div>
+            </div>
+
+            {/* Screen Controls */}
+            <div className="cs-device-controls">
+              <button
+                type="button"
+                onClick={prevScreen}
+                className="cs-ctrl-btn"
+                aria-label="Previous screen"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+
+              <div className="cs-screen-counter">
+                SCREEN {String(activeScreenIndex + 1).padStart(2, '0')} /{' '}
+                {String(project.galleryScreens?.length || 18).padStart(2, '0')}
+              </div>
+
+              <button
+                type="button"
+                onClick={nextScreen}
+                className="cs-ctrl-btn"
+                aria-label="Next screen"
+              >
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setIsAutoplay(!isAutoplay)}
+                className={`cs-autoplay-btn ${isAutoplay ? 'cs-autoplay-btn--active' : ''}`}
+              >
+                {isAutoplay ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                <span>{isAutoplay ? 'Pause' : 'Autoplay'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(true)}
+                className="cs-ctrl-btn"
+                title="Fullscreen preview"
+                aria-label="Expand image"
+              >
+                <Maximize2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Thumbnail Quick-Select Strip */}
+            {project.galleryScreens?.length > 0 && (
+              <div className="cs-thumb-strip">
+                {project.galleryScreens.map((screen, idx) => (
+                  <div
+                    key={idx}
+                    className={`cs-thumb-item ${idx === activeScreenIndex ? 'cs-thumb-item--active' : ''}`}
+                    onClick={() => setActiveScreenIndex(idx)}
+                    title={`Screen ${idx + 1}`}
+                  >
+                    <img src={screen} alt={`Thumbnail ${idx + 1}`} loading="lazy" />
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                ))}
+              </div>
+            )}
           </div>
         </section>
-      )}
 
-      <hr className="divider" />
+        {/* ── OVERVIEW ── */}
+        <section className="cs-section">
+          <div className="cs-box-card">
+            <span className="cs-card-tag cs-card-tag--solution">
+              <Sparkles className="w-3.5 h-3.5" /> Project Overview
+            </span>
+            <h2 className="cs-box-title">About the Application</h2>
+            <p className="cs-box-p">{project.description}</p>
+          </div>
+        </section>
 
-      {/* TECH STACK */}
-      <section className="cs-section">
-        <h2>Tech Stack</h2>
-        <div className="tech-row">
-          {project.tech.map((t, i) => (
-            <span key={i}>{t}</span>
-          ))}
+        {/* ── PROBLEM & SOLUTION DUAL CARDS ── */}
+        <section className="cs-section">
+          <div className="cs-sec-header">
+            <span className="cs-anno">the challenge &amp; the fix ◜</span>
+            <h2 className="cs-sec-title">Problem &amp; Solution</h2>
+            <p className="cs-sec-sub">Understanding the core user friction and building the digital remedy.</p>
+          </div>
+
+          <div className="cs-dual-grid">
+            {/* Problem Card */}
+            <div className="cs-box-card">
+              <span className="cs-card-tag cs-card-tag--problem">
+                <AlertTriangle className="w-3.5 h-3.5" /> The Problem
+              </span>
+              <h3 className="cs-box-title">User Friction &amp; Inefficiency</h3>
+              <p className="cs-box-p">{project.problem}</p>
+            </div>
+
+            {/* Solution Card */}
+            <div className="cs-box-card">
+              <span className="cs-card-tag cs-card-tag--solution">
+                <Lightbulb className="w-3.5 h-3.5" /> The Solution
+              </span>
+              <h3 className="cs-box-title">Integrated Mobile Experience</h3>
+              <p className="cs-box-p">{project.solution}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── ROLE & RESPONSIBILITIES ── */}
+        <section className="cs-section">
+          <div className="cs-role-card">
+            <div>
+              <div className="cs-role-pill">
+                <Star className="w-3.5 h-3.5" /> My Role
+              </div>
+              <h2 className="cs-role-headline">{project.role}</h2>
+              <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>
+                {project.process}
+              </p>
+            </div>
+
+            {/* Interactive Tasks Checklist */}
+            <div>
+              <p style={{
+                fontFamily: 'Space Grotesk, monospace',
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#888',
+                marginBottom: '0.8rem',
+              }}>
+                Interactive Responsibilities (Click to toggle)
+              </p>
+              <ul className="cs-tasks-list">
+                {project.roleTasks?.map((task, i) => {
+                  const isDone = completedTasks.includes(i);
+                  return (
+                    <li
+                      key={i}
+                      className="cs-task-item"
+                      onClick={() => toggleTask(i)}
+                      style={{
+                        borderColor: isDone ? themeColor : '#141414',
+                      }}
+                    >
+                      <span
+                        className="cs-task-check"
+                        style={{
+                          background: isDone ? themeColor : '#ddd',
+                          color: isDone ? '#141414' : '#888',
+                        }}
+                      >
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </span>
+                      <span style={{ fontWeight: 600 }}>{task}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ── KEY FEATURES GRID ── */}
+        <section className="cs-section">
+          <div className="cs-sec-header">
+            <span className="cs-anno">built with intention ◜</span>
+            <h2 className="cs-sec-title">Core Features</h2>
+            <p className="cs-sec-sub">Designed and implemented to streamline every interaction.</p>
+          </div>
+
+          <div className="cs-features-grid">
+            {project.features?.map((feat, i) => (
+              <div key={i} className="cs-feature-card">
+                <div className="cs-feature-icon-box">
+                  {getFeatureIcon(i)}
+                </div>
+                <div>
+                  <div className="cs-feature-num">FEATURE {String(i + 1).padStart(2, '0')}</div>
+                  <h3 className="cs-feature-name">{feat.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── REFLECTION NOTEPAD (SCRAPBOOK TAPE) ── */}
+        <section className="cs-section">
+          <div className="cs-reflection-card">
+            <span className="cs-tape cs-tape-tl" />
+            <span className="cs-tape cs-tape-tr" />
+
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              fontFamily: 'Caveat, cursive',
+              fontSize: '1.4rem',
+              fontWeight: 700,
+              color: '#555',
+              marginBottom: '0.5rem',
+            }}>
+              Melvin's take &amp; lessons learned ◜
+            </div>
+
+            <h2 style={{
+              fontFamily: 'Space Grotesk, sans-serif',
+              fontSize: '1.65rem',
+              fontWeight: 900,
+              color: '#141414',
+              margin: '0 0 1rem 0',
+              letterSpacing: '-0.02em',
+            }}>
+              Key Reflections
+            </h2>
+
+            <blockquote className="cs-reflection-quote">
+              "{project.reflection}"
+            </blockquote>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              fontFamily: 'Space Grotesk, monospace',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              color: '#888',
+            }}>
+              <span>Melvin Andrea</span>
+              <span>·</span>
+              <span>Frontend &amp; Mobile Developer</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── BOTTOM PROJECT SWITCHER ── */}
+        <div className="cs-footer-nav">
+          <button
+            onClick={() => navigate('/projects/mobile-app')}
+            className="cs-back-btn"
+          >
+            <ArrowLeft className="w-4 h-4" /> All Mobile Apps
+          </button>
+
+          <Link
+            to={`/projects/${otherProjectId}`}
+            className="cs-action-btn cs-action-btn--primary"
+          >
+            <span>Next Project: {otherProjectTitle}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
-      </section>
 
-      <hr className="divider" />
+      </div>
 
-      {/* REFLECTION */}
-      <section className="cs-section">
-        <h2>Reflection</h2>
-        <p>{project.reflection}</p>
-      </section>
-
-      <section className="cs-section text-center pt-8">
-        <Link to="/#projects" className="back-link justify-center">
-          <ArrowLeft className="w-4 h-4" /> Back to all projects
-        </Link>
-      </section>
-    </main>
+      {/* ── LIGHTBOX MODAL ── */}
+      {lightboxOpen && (
+        <div
+          className="cs-lightbox-overlay"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div
+            className="cs-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="cs-lightbox-close"
+              onClick={() => setLightboxOpen(false)}
+              aria-label="Close lightbox"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={currentScreen}
+              alt="Fullscreen preview"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
+
+export default ProjectDetailPage;

@@ -1,0 +1,574 @@
+/* ── Web Developer Directory Page (Browser Window Neo-Brutalist Theme) ── */
+
+.wd-page {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+  min-height: 100vh;
+  padding-top: 5.5rem;
+  padding-bottom: 6rem;
+  position: relative;
+  overflow-x: hidden;
+  color: #141414;
+}
+
+.wd-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Top Navigation ── */
+.wd-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.wd-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #141414;
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 3px 3px 0 #141414;
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.wd-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #141414;
+  background: #f7f7f7;
+}
+
+.wd-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #141414;
+  color: #ffffff;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid #141414;
+}
+
+/* ── Header ── */
+.wd-header {
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.wd-anno {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #555555;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.wd-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0.2rem 0 0.8rem 0;
+  text-transform: uppercase;
+}
+
+.wd-desc {
+  font-size: 1.05rem;
+  color: #555555;
+  max-width: 580px;
+  line-height: 1.6;
+  margin: 0 0 1.8rem 0;
+}
+
+/* ── Filter Bar ── */
+.wd-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.wd-filter-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid #141414;
+  background: #ffffff;
+  color: #141414;
+  box-shadow: 2.5px 2.5px 0 #141414;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.04em;
+}
+
+.wd-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #141414;
+  background: #fdfdfd;
+}
+
+.wd-filter-btn--active {
+  background: #141414;
+  color: #ffffff;
+  box-shadow: 4px 4px 0 #FFD026;
+  border-color: #141414;
+}
+
+.wd-filter-btn--active:hover {
+  background: #141414;
+  box-shadow: 5px 5px 0 #FFD026;
+}
+
+/* ── Interactive Stickers ── */
+.wd-stickers-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.wd-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid #141414;
+  box-shadow: 2.5px 2.5px 0 #141414;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.wd-sticker:hover {
+  transform: translateY(-3px) scale(1.05) rotate(-1.5deg);
+  box-shadow: 4px 4px 0 #141414;
+}
+
+.wd-sticker:active {
+  transform: scale(0.96);
+}
+
+.wd-sticker-gold {
+  background: #FFD026;
+  color: #141414;
+}
+
+.wd-sticker-cyan {
+  background: #17B8DE;
+  color: #141414;
+}
+
+.wd-sticker-green {
+  background: #00C274;
+  color: #141414;
+}
+
+.wd-sticker-purple {
+  background: #8B5CF6;
+  color: #ffffff;
+}
+
+/* ── 2-Column Browser Window Grid ── */
+.wd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 2.2rem;
+  margin-bottom: 4.5rem;
+}
+
+/* ── Browser Window Card ── */
+.wd-browser-card {
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 6px 6px 0 #141414;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.25s ease;
+  position: relative;
+}
+
+.wd-browser-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 9px 9px 0 #141414;
+}
+
+/* Browser Top Chrome Header */
+.wd-browser-bar {
+  background: #f3f4f6;
+  border-bottom: 2px solid #141414;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.wd-traffic-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wd-dot-close {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FF5F56;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.wd-dot-min {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFBD2E;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.wd-dot-max {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27C93F;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.wd-url-box {
+  flex: 1;
+  max-width: 260px;
+  background: #ffffff;
+  border: 1.5px solid #141414;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  color: #555555;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wd-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #027A48;
+  background: #E6F9F0;
+  border: 1px solid #12B76A;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+}
+
+.wd-pulse-green {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #12B76A;
+  animation: wdPulse 1.8s infinite;
+}
+
+@keyframes wdPulse {
+  0% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+  100% { transform: scale(0.9); opacity: 1; }
+}
+
+/* Browser Viewport with Scroll Pan Effect */
+.wd-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #141414;
+  overflow: hidden;
+  border-bottom: 2px solid #141414;
+  display: block;
+  text-decoration: none;
+}
+
+.wd-viewport-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+.wd-browser-card:hover .wd-viewport-img {
+  transform: scale(1.05);
+}
+
+/* Overlay Quick Action */
+.wd-viewport-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.wd-browser-card:hover .wd-viewport-overlay {
+  opacity: 1;
+}
+
+.wd-overlay-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  color: #141414;
+  border: 2px solid #141414;
+  box-shadow: 3px 3px 0 #141414;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transform: translateY(6px);
+  transition: transform 0.25s ease;
+}
+
+.wd-browser-card:hover .wd-overlay-badge {
+  transform: translateY(0);
+}
+
+/* Card Body */
+.wd-card-body {
+  padding: 1.5rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #ffffff;
+}
+
+.wd-card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wd-category-tag {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #777777;
+}
+
+.wd-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.55rem 0;
+}
+
+.wd-card-tagline {
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
+  flex: 1;
+}
+
+/* Tech Badges */
+.wd-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.4rem;
+}
+
+.wd-tech-tag {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #f4f4f4;
+  color: #141414;
+  border: 1.5px solid #141414;
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Action Buttons */
+.wd-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.wd-btn-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: #141414;
+  color: #ffffff;
+  border: 2px solid #141414;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 #FFD026;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.wd-btn-demo:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #FFD026;
+  background: #333333;
+}
+
+.wd-btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: #ffffff;
+  color: #141414;
+  border: 2px solid #141414;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  box-shadow: 2.5px 2.5px 0 #141414;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.wd-btn-github:hover {
+  background: #141414;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #141414;
+}
+
+.wd-btn-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #141414;
+  background: #ffffff;
+  color: #141414;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #141414;
+  transition: all 0.15s ease;
+  margin-left: auto;
+}
+
+.wd-btn-copy:hover {
+  transform: scale(1.1);
+  background: #FFD026;
+}
+
+/* ── Bottom Callout Strip ── */
+.wd-strip {
+  background: #141414;
+  color: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 6px 6px 0 #FFD026;
+  border-radius: 16px;
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.wd-strip-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem 0;
+}
+
+.wd-strip-p {
+  color: #aaaaaa;
+  font-size: 0.92rem;
+  margin: 0;
+  max-width: 440px;
+}
+
+/* ── Responsive Rules ── */
+@media (max-width: 820px) {
+  .wd-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .wd-title {
+    font-size: 2.4rem;
+  }
+  .wd-card-body {
+    padding: 1.25rem;
+  }
+}

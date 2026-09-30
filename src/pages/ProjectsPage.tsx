@@ -24,7 +24,7 @@ const FOLDERS: FolderData[] = [
     tabBg: '#17B8DE',
     tabFg: '#141414',
     bodyBg: '#fcfcfc',
-    link: '/projects/pdam',
+    link: '/projects/mobile-app',
   },
   {
     id: 'web-dev',
@@ -35,7 +35,7 @@ const FOLDERS: FolderData[] = [
     tabBg: '#141414',
     tabFg: '#ffffff',
     bodyBg: '#fcfcfc',
-    link: '/projects/tresbekasli',
+    link: '/projects/web-dev',
   },
   {
     id: 'photography',

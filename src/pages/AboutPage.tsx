@@ -37,9 +37,20 @@ const SKILLS: { icon: React.ElementType; label: string }[] = [
 
 const SKILL_TONES = ['yellow', 'blue', 'green', 'pink', 'yellow', 'blue'] as const;
 
-// Placeholder copy for the skill popup — Melvin will replace this per skill later.
-const SKILL_PLACEHOLDER_TEXT =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+const SKILL_DESCRIPTIONS: Record<string, string> = {
+  'Frontend Web Development':
+    'Building responsive, accessible, and high-performance web applications using React, TypeScript, and Tailwind CSS. Focused on component architecture, state management, and smooth micro-interactions.',
+  'Mobile App Development':
+    'Crafting cross-platform mobile apps with Flutter and Dart. Experienced in transforming wireframe prototypes into fully functional, production-ready mobile experiences.',
+  'UI/UX Design':
+    'Designing user-centered digital interfaces in Figma with modular design systems, intuitive user flows, and interactive prototypes tailored for real-world adoption.',
+  'Responsive Web Design':
+    'Ensuring websites scale flawlessly across mobile, tablet, and desktop viewports with fluid typography, responsive grids, and touch-optimized navigation.',
+  'Prototyping & Wireframing':
+    'Translating business requirements into structured wireframes and clickable prototypes to test hypotheses, refine UX, and accelerate development.',
+  'Visual Storytelling':
+    'Combining principles of cinematography, color grading, photography, and narrative pacing to craft evocative brand visuals and digital media.',
+};
 
 const CATEGORY_ICON: Record<TechStackCategory['categoryIcon'], React.ElementType> = {
   code: Code2,
@@ -291,7 +302,9 @@ export const AboutPage: React.FC = () => {
                   </span>
                   <h3 className="ap-sheet-title">{SKILLS[openSkill].label}</h3>
                 </div>
-                <p className="ap-sheet-text">{SKILL_PLACEHOLDER_TEXT}</p>
+                <p className="ap-sheet-text">
+                  {SKILL_DESCRIPTIONS[SKILLS[openSkill].label] || SKILLS[openSkill].label}
+                </p>
               </>
             )}
             <button type="button" className="ap-sheet-close" onClick={() => setOpenSkill(null)}>
