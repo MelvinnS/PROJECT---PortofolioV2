@@ -1,0 +1,107 @@
+.pxs {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #141414;
+  font-family: 'Pixelify Sans', 'Space Grotesk', monospace;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 450ms ease;
+}
+.pxs--out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pxs__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.6rem, 5vh, 2.6rem);
+  width: min(360px, 78vw);
+}
+
+/* huruf muncul satu per satu, bergerak per-langkah (efek pixel) */
+.pxs__logo {
+  display: flex;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(3rem, 13vw, 6rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #141414;
+}
+.pxs__letter {
+  display: inline-block;
+  opacity: 0;
+}
+.pxs--go .pxs__letter {
+  animation: pxs-in 320ms steps(4, end) calc(var(--i) * 90ms) both;
+}
+@keyframes pxs-in {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* loading bar pixel */
+.pxs__loader {
+  width: 100%;
+}
+.pxs__segs {
+  display: flex;
+  gap: 3px;
+  padding: 4px;
+  border: 3px solid #141414;
+  box-shadow: 4px 4px 0 #141414;
+  background: #fff;
+}
+.pxs__seg {
+  flex: 1;
+  height: 16px;
+  background: #ececec;
+}
+.pxs__seg.on {
+  background: #141414;
+}
+.pxs__row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+.pxs__label::after {
+  content: '_';
+  animation: pxs-blink 0.8s steps(2, end) infinite;
+}
+.pxs__pct {
+  font-variant-numeric: tabular-nums;
+}
+@keyframes pxs-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pxs {
+    transition: none;
+  }
+  .pxs__letter {
+    opacity: 1;
+    animation: none !important;
+  }
+  .pxs__label::after {
+    animation: none;
+  }
+}

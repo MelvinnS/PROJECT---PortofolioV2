@@ -1,0 +1,41 @@
+/* Transisi halaman: 5 kolom hitam turun dari atas (kiri -> kanan bertahap),
+   label nama halaman di tengah, lalu kolom terbuka lagi ke bawah. */
+.pt-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  visibility: hidden;
+}
+.pt-root[data-active='true'] {
+  visibility: visible;
+  pointer-events: auto;
+}
+.pt-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(20% + 1px); /* +1px menutup celah subpixel antar kolom */
+  clip-path: inset(0 0 100% 0);
+  will-change: clip-path;
+  background-color: #111111;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+}
+.pt-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  font-family: 'Space Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b9b9b9;
+  white-space: nowrap;
+}

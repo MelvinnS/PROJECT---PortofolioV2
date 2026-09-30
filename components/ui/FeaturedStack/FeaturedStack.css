@@ -1,0 +1,343 @@
+/* ── Featured Stack (scrapbook folder cards) ───────────────── */
+
+/* Background: Kotak-kotak (square grid), matching Hero & About section */
+.fp-section.fs-section {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.fs-head {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* React Bits ScrollStack wrapper overrides */
+.fs-stack .scroll-stack-inner {
+  padding: 1.5rem 1.5rem 16rem;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.scroll-stack-card.fs-item {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  min-height: 0;
+  height: auto;
+  max-width: none;
+  margin: 0;
+}
+
+.fs-folder-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* ── TOP HORIZONTAL TABS ROW (arranged side-by-side across the top) ── */
+.fs-tabs-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: -3px; /* Sits flush on top of the card border */
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.fs-tabs-row::-webkit-scrollbar {
+  display: none;
+}
+
+.fs-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  flex-shrink: 0;
+  margin-right: -4px; /* Slight overlap for seamless tab chain */
+  transition: transform 0.15s ease;
+}
+.fs-tab-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Slanted Tab with crisp 3px black stroke */
+.fs-tab-slant-outer {
+  display: block;
+  background: #141414; /* 3px border color */
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
+  padding: 3px 3px 0 3px;
+}
+
+.fs-tab-slant-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tab-bg);
+  color: var(--tab-fg);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 100%, 0 100%);
+  height: 42px;
+  padding: 0 34px 0 18px;
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.fs-tab-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.2;
+}
+
+/* Active tab state */
+.fs-tab-btn--active {
+  z-index: 10 !important;
+  transform: translateY(0);
+}
+.fs-tab-btn--active .fs-tab-slant-outer {
+  padding-bottom: 3px; /* Drops directly through the border into folder body */
+}
+
+/* ── FOLDER MAIN BODY ── */
+.fs-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  min-height: 490px;
+  padding: 3.5rem 3.5rem 3.5rem 4rem;
+  border: 3px solid #141414;
+  box-shadow: 8px 8px 0 #141414;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Left Column: Info */
+.fs-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  z-index: 2;
+}
+
+.fs-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.fs-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.fs-title {
+  font-size: clamp(2.3rem, 4.2vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.fs-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 440px;
+  opacity: 0.88;
+  margin: 0;
+}
+
+.fs-link {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 2.5px solid currentColor;
+  padding-bottom: 3px;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.18s, letter-spacing 0.18s;
+  text-decoration: none;
+}
+.fs-link:hover {
+  opacity: 0.7;
+  letter-spacing: 0.16em;
+}
+
+/* Right Column: Media / Mockup */
+.fs-right-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fs-media {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 16/10;
+}
+
+.fs-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 4px solid #ffffff;
+  background: #222;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  transform: rotate(-1.5deg);
+  transition: transform 0.4s ease;
+}
+.fs-folder-wrapper:hover .fs-img {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.fs-img-empty {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, #e5e7eb, #e5e7eb 10px, #f3f4f6 10px, #f3f4f6 20px);
+}
+
+/* Scotch Tape Effect on Corners */
+.fs-tape {
+  position: absolute;
+  width: 80px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  pointer-events: none;
+}
+.fs-tape-tl {
+  top: -10px;
+  left: -15px;
+  transform: rotate(-35deg);
+}
+.fs-tape-tr {
+  top: -10px;
+  right: -15px;
+  transform: rotate(35deg);
+}
+.fs-tape-bl {
+  bottom: -10px;
+  left: -15px;
+  transform: rotate(35deg);
+}
+.fs-tape-br {
+  bottom: -10px;
+  right: -15px;
+  transform: rotate(-35deg);
+}
+
+/* ── "ALL PROJECTS" GREEN FOLDER (matching user's reference photo) ── */
+.fs-body--all {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.fs-all-cta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  gap: 1.25rem;
+  padding: 2rem;
+  transition: transform 0.25s ease;
+}
+.fs-all-cta-box:hover {
+  transform: scale(1.05);
+}
+
+.fs-all-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fs-all-icon {
+  width: 110px;
+  height: 110px;
+  stroke: #141414;
+}
+
+.fs-all-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  text-align: center;
+  color: #141414;
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media (max-width: 900px) {
+  .fs-body {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 2rem;
+    min-height: auto;
+    gap: 2rem;
+  }
+  .fs-media {
+    max-width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .fs-all-icon {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fs-tab-slant-inner {
+    height: 36px;
+    padding: 0 24px 0 12px;
+    font-size: 0.65rem;
+    gap: 5px;
+  }
+  .fs-tab-icon {
+    width: 12px;
+    height: 12px;
+  }
+  .fs-title {
+    font-size: 1.9rem;
+  }
+  .fs-body {
+    padding: 2rem 1.5rem;
+    box-shadow: 5px 5px 0 #141414;
+  }
+}
