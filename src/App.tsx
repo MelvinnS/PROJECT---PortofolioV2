@@ -13,6 +13,7 @@ import WebDevPage from './pages/WebDevPage';
 import PhotographyPage from './pages/PhotographyPage';
 import VideoEditingPage from './pages/VideoEditingPage';
 import GraphicDesignPage from './pages/GraphicDesignPage';
+import GuestbookPage from './pages/GuestbookPage';
 import { PageTransitionProvider } from './components/layout/PageTransition';
 import { useLenis } from './hooks/useLenis';
 import type Lenis from 'lenis';
@@ -51,6 +52,7 @@ export const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/guestbook" element={<GuestbookPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/mobile-app" element={<MobileAppPage />} />
         <Route path="/projects/web-dev" element={<WebDevPage />} />

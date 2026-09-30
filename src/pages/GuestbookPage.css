@@ -1,0 +1,319 @@
+/* ── Guestbook Page Styling — Konsisten dengan sistem desain Scrapbook / Neo-Brutalist ── */
+
+.gb-page {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#e5e7eb 1px, transparent 1px),
+    linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+  background-size: 44px 44px;
+  min-height: 100vh;
+  padding: 6.5rem 1.5rem 6rem;
+  position: relative;
+  overflow-x: hidden;
+  color: #141414;
+}
+
+.gb-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.gb-eyebrow {
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: #141414;
+  transform: rotate(-3deg);
+  margin-bottom: 0.3rem;
+}
+
+.gb-header {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.gb-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  margin: 0.2rem 0 0.8rem 0;
+  text-transform: uppercase;
+}
+
+.gb-desc {
+  font-size: 1.05rem;
+  color: #555555;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+/* ── Admin Switch Bar ── */
+.gb-admin-toggle-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 2px solid #141414;
+  box-shadow: 3px 3px 0 #141414;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.gb-admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Form Card ── */
+.gb-form-card {
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 6px 6px 0 #141414;
+  border-radius: 18px;
+  padding: 2rem 2.2rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.gb-tape {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  width: 90px;
+  height: 24px;
+  background: rgba(255, 208, 38, 0.75);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+.gb-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.4rem;
+}
+
+.gb-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #141414;
+}
+
+.gb-counter {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  color: #888888;
+}
+
+.gb-input,
+.gb-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #141414;
+  border-radius: 10px;
+  background: #fbfbfb;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #141414;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.gb-input:focus,
+.gb-textarea:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #141414;
+  box-shadow: 3px 3px 0 #FFD026;
+}
+
+.gb-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.55;
+}
+
+.gb-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #141414;
+  color: #ffffff;
+  border: 2px solid #141414;
+  box-shadow: 4px 4px 0 #FFD026;
+  border-radius: 999px;
+  padding: 0.7rem 1.8rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+}
+
+.gb-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 #FFD026;
+}
+
+.gb-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Comment List ── */
+.gb-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.gb-comment-card {
+  background: #ffffff;
+  border: 2.5px solid #141414;
+  box-shadow: 5px 5px 0 #141414;
+  border-radius: 16px;
+  padding: 1.6rem 1.8rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gb-comment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 7px 7px 0 #141414;
+}
+
+.gb-comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gb-comment-author {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.gb-avatar-chip {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFD026;
+  border: 2px solid #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #141414;
+}
+
+.gb-author-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #141414;
+}
+
+.gb-comment-date {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  color: #777777;
+}
+
+.gb-comment-body {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #333333;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* ── Owner Reply Box ── */
+.gb-reply-box {
+  background: #f8fafc;
+  border: 2px solid #141414;
+  border-left: 5px solid #17B8DE;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.2rem;
+}
+
+.gb-reply-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.gb-reply-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #17B8DE;
+  color: #141414;
+  border: 1.5px solid #141414;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.gb-reply-body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #222222;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Admin Reply Form (Inside Card) ── */
+.gb-admin-reply-form {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1.5px dashed #dddddd;
+}
+
+@media (max-width: 640px) {
+  .gb-form-card {
+    padding: 1.4rem;
+  }
+  .gb-comment-card {
+    padding: 1.2rem;
+  }
+  .gb-title {
+    font-size: 2.4rem;
+  }
+}

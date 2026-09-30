@@ -39,6 +39,7 @@ export const Navbar: React.FC = () => {
             <li><button onClick={() => handleNavClick('home')} className="bg-transparent border-0 cursor-pointer font-medium text-inherit p-0" style={{ color: '#555' }}>Home</button></li>
             <li><button onClick={() => { setMobileMenuOpen(false); go('/about'); }} className="bg-transparent border-0 cursor-pointer font-medium text-inherit p-0" style={{ color: '#555' }}>About</button></li>
             <li><button onClick={() => { setMobileMenuOpen(false); go('/projects'); }} className="bg-transparent border-0 cursor-pointer font-medium text-inherit p-0" style={{ color: '#555' }}>Projects</button></li>
+            <li><button onClick={() => { setMobileMenuOpen(false); go('/guestbook'); }} className="bg-transparent border-0 cursor-pointer font-medium text-inherit p-0" style={{ color: '#555' }}>Guestbook</button></li>
             <li><button onClick={() => handleNavClick('contact')} className="bg-transparent border-0 cursor-pointer font-medium text-inherit p-0" style={{ color: '#555' }}>Contact</button></li>
           </ul>
           <button
@@ -67,6 +68,7 @@ export const Navbar: React.FC = () => {
           <li><button onClick={() => handleNavClick('home')} className="bg-transparent border-0 cursor-pointer font-semibold text-[1.3rem]" style={{ color: '#141414' }}>Home</button></li>
           <li><button onClick={() => { setMobileMenuOpen(false); go('/about'); }} className="bg-transparent border-0 cursor-pointer font-semibold text-[1.3rem]" style={{ color: '#141414' }}>About</button></li>
           <li><button onClick={() => { setMobileMenuOpen(false); go('/projects'); }} className="bg-transparent border-0 cursor-pointer font-semibold text-[1.3rem]" style={{ color: '#141414' }}>Projects</button></li>
+          <li><button onClick={() => { setMobileMenuOpen(false); go('/guestbook'); }} className="bg-transparent border-0 cursor-pointer font-semibold text-[1.3rem]" style={{ color: '#141414' }}>Guestbook</button></li>
           <li><button onClick={() => handleNavClick('contact')} className="bg-transparent border-0 cursor-pointer font-semibold text-[1.3rem]" style={{ color: '#141414' }}>Contact</button></li>
         </ul>
         <button
