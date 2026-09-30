@@ -14,6 +14,7 @@ import PhotographyPage from './pages/PhotographyPage';
 import VideoEditingPage from './pages/VideoEditingPage';
 import GraphicDesignPage from './pages/GraphicDesignPage';
 import GuestbookPage from './pages/GuestbookPage';
+import TargetCursor from './components/ui/TargetCursor/TargetCursor';
 import { PageTransitionProvider } from './components/layout/PageTransition';
 import { useLenis } from './hooks/useLenis';
 import type Lenis from 'lenis';
@@ -45,6 +46,12 @@ export const App: React.FC = () => {
 
   return (
     <Router>
+      <TargetCursor
+        targetSelector="a, button, .cursor-target"
+        spinDuration={2}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
       <PageTransitionProvider>
       <ScrollToTop />
       <AmbientGlow />
