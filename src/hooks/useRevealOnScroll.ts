@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { onPageReady } from './onPageReady';
 
 /**
  * Scroll reveal: every element with the `data-reveal` attribute starts hidden
@@ -8,6 +9,8 @@ import { useEffect } from 'react';
  */
 export function useRevealOnScroll() {
   useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    const start = () => {
     const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
     if (els.length === 0) return;
 
@@ -17,18 +20,23 @@ export function useRevealOnScroll() {
       return;
     }
 
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
+          observer?.unobserve(entry.target);
         });
       },
       { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     );
 
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    els.forEach((el) => observer!.observe(el));
+    };
+    const cancelWait = onPageReady(start);
+    return () => {
+      cancelWait();
+      observer?.disconnect();
+    };
   }, []);
 }

@@ -180,6 +180,42 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-4 h-4' 
         </svg>
       );
 
+    case 'Tailwind CSS':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <path
+            d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35.98 1 2.11 2.15 4.6 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35C15.62 7.15 14.49 6 12 6zM6.5 12c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.9 1.35.98 1 2.11 2.15 4.6 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.9-1.35-.98-1-2.11-2.15-4.6-2.15z"
+            fill="#38BDF8"
+          />
+        </svg>
+      );
+
+    case 'Vite':
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <path d="M21.5 3.5L12.3 21.2c-.15.28-.55.28-.7 0L2.5 4.4c-.16-.3.07-.66.4-.6l9 1.55a.5.5 0 00.2 0l9-1.55c.33-.06.56.3.4.6z" fill="url(#viteA)" />
+          <path d="M16.5 1.3l-5 1.05a.4.4 0 00-.3.32l-.85 7.2c-.03.28.24.5.5.4l1.7-.7a.35.35 0 01.47.37l-.5 4.6c-.05.4.44.63.68.3l.2-.27" stroke="url(#viteB)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <defs>
+            <linearGradient id="viteA" x1="2" y1="4" x2="21" y2="20" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#41D1FF" />
+              <stop offset="1" stopColor="#BD34FE" />
+            </linearGradient>
+            <linearGradient id="viteB" x1="10" y1="1" x2="16" y2="14" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#FFEA83" />
+              <stop offset="1" stopColor="#FFA800" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case 'npm':
+      return (
+        <svg viewBox="0 0 24 24" className={className}>
+          <rect width="24" height="24" rx="4" fill="#CB3837" />
+          <path d="M4 8h16v9h-8v-6.5H9.5V17H4V8z" fill="#fff" />
+        </svg>
+      );
+
     case 'Canva':
       return (
         <svg viewBox="0 0 24 24" className={className}>

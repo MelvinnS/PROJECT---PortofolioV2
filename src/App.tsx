@@ -8,18 +8,25 @@ import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { CreativeDetailPage } from './pages/CreativeDetailPage';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
+import { PageTransitionProvider } from './components/layout/PageTransition';
+import { useLenis } from './hooks/useLenis';
+import type Lenis from 'lenis';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    const lenis = (window as unknown as { __lenis?: Lenis }).__lenis;
+
     if (!hash) {
-      window.scrollTo(0, 0);
+      if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
     } else {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        if (lenis) lenis.scrollTo(element, { offset: -72, immediate: true });
+        else element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   }, [pathname, hash]);
@@ -28,8 +35,11 @@ const ScrollToTop: React.FC = () => {
 };
 
 export const App: React.FC = () => {
+  useLenis();
+
   return (
     <Router>
+      <PageTransitionProvider>
       <ScrollToTop />
       <AmbientGlow />
       <Navbar />
@@ -41,6 +51,7 @@ export const App: React.FC = () => {
         <Route path="/creative/:category" element={<CreativeDetailPage />} />
       </Routes>
       <Footer />
+      </PageTransitionProvider>
     </Router>
   );
 };

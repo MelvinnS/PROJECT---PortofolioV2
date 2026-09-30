@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import FolderFloat from '../components/ui/FolderFloat/FolderFloat';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll';
-import { useNavigate } from 'react-router-dom';
+import { usePageTransition } from '../components/layout/PageTransition';
 import {
   Code2,
   Smartphone,
@@ -28,7 +28,7 @@ const delay = (ms: number) => ({ '--reveal-delay': `${ms}ms` } as React.CSSPrope
 const FOLDER_ITEMS = creativeCategoriesData.map((c) => ({ label: c.title, value: c.id }));
 
 export const HomePage: React.FC = () => {
-  const navigate = useNavigate();
+  const { go: navigate } = usePageTransition();
   const mainRef = useRef<HTMLElement>(null);
   useRevealOnScroll();
 
