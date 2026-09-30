@@ -7,7 +7,7 @@ import {
   getClientIp,
   jsonResponse,
   parseJsonBody,
-} from './_db';
+} from './_db.js';
 
 export default async function handler(req: IncomingMessage & { method?: string; url?: string }, res: ServerResponse) {
   // Handle CORS preflight
