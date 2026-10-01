@@ -1,86 +1,154 @@
-import React from 'react';
-import { ArrowUpRight, Target } from 'lucide-react';
+import React, { useRef, useCallback } from 'react';
 import './Hero.css';
 
-// Delay (ms) tiap elemen — urutan: anotasi → name box → sticker → tags → headline per kata → CTA
-const inDelay = (ms: number) => ({ '--in': `${ms}ms` } as React.CSSProperties);
+// ─── Text-scramble hook ────────────────────────────────────────────────────────
+const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+const TARGET = 'MELVIN';
 
-const LINE_1 = ['I', 'design', '&', 'build', 'software', 'that'];
-const LINE_2 = ['gets', 'out', 'of', 'your', 'way.'];
-const WORD_START = 720;
-const WORD_STEP = 75;
+function useScramble(targetRef: React.RefObject<HTMLSpanElement | null>) {
+  const rafRef = useRef<number | null>(null);
+  const iRef = useRef<number>(0);
+  const iterRef = useRef<number>(0);
 
+  const cancel = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  }, []);
+
+  const scramble = useCallback(() => {
+    cancel();
+    iRef.current = 0;
+    iterRef.current = 0;
+
+    const step = () => {
+      if (!targetRef.current) return;
+      const iter = iterRef.current;
+      const revealed = Math.min(iRef.current, TARGET.length);
+
+      let output = '';
+      for (let i = 0; i < TARGET.length; i++) {
+        if (i < revealed) {
+          output += TARGET[i];
+        } else {
+          output += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        }
+      }
+      targetRef.current.textContent = output;
+
+      iterRef.current += 1;
+      if (iter % 2 === 0 && iRef.current < TARGET.length) {
+        iRef.current += 1;
+      }
+
+      if (iRef.current < TARGET.length) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        targetRef.current.textContent = TARGET;
+        rafRef.current = null;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+  }, [cancel, targetRef]);
+
+  const reset = useCallback(() => {
+    cancel();
+    if (targetRef.current) targetRef.current.textContent = TARGET;
+  }, [cancel, targetRef]);
+
+  return { scramble, reset };
+}
+
+// ─── Component ─────────────────────────────────────────────────────────────────
 export const Hero: React.FC = () => {
+  const nameTextRef = useRef<HTMLSpanElement>(null);
+  const { scramble } = useScramble(nameTextRef);
+
   return (
-    <section id="home" className="sb-hero">
-      <div className="sb-hero-inner">
+    <section id="home" className="hero-v2">
+      {/* ── Centre stack ────────────────────────────────────────── */}
+      <div className="hero-v2-center">
 
-        {/* Handwritten annotation above name */}
-        <div className="sb-anno sb-anno-name" data-in style={inDelay(0)}>my name is</div>
+        {/* MELVIN box */}
+        <div className="hero-v2-name-wrap" data-v2-in style={{ '--v2-delay': '0ms' } as React.CSSProperties}>
+          {/* Mobile Developer badge (floats above, top-left) */}
+          <span className="hero-v2-badge">Mobile Developer</span>
 
-        {/* Name box + side stickers */}
-        <div className="sb-name-row">
-          <div className="sb-name-wrap">
-            <span className="sb-sticker sb-sticker-tl" data-in style={inDelay(680)}>Mobile Developer</span>
-            <div className="sb-name-box" data-in style={inDelay(140)}>
-              <h1>MELVIN</h1>
-            </div>
-            <span className="sb-sticker sb-sticker-tr" data-in style={inDelay(820)}>Web Developer</span>
+          <div
+            className="hero-v2-name-box cursor-target"
+            onMouseEnter={scramble}
+          >
+            <span ref={nameTextRef} className="hero-v2-name-text">MELVIN</span>
           </div>
         </div>
 
-        {/* Row under name box: role tags + availability dot */}
-        <div className="sb-tags-row">
-          <span className="sb-tag sb-tag-yellow" data-in style={inDelay(950)}>Frontend Developer</span>
-          <span className="sb-dot-text" data-in style={inDelay(1050)}>
-            <span className="sb-dot" /> OPEN FOR OPPORTUNITIES
-          </span>
-          <span className="sb-tag sb-tag-mint" data-in style={inDelay(1150)}>UI/UX Designer</span>
+        {/* Three pills */}
+        <div className="hero-v2-pills" data-v2-in style={{ '--v2-delay': '120ms' } as React.CSSProperties}>
+          <span className="hero-v2-pill hero-v2-pill-yellow">Frontend Developer</span>
+          <span className="hero-v2-pill hero-v2-pill-outline">OPEN FOR OPPORTUNITIES</span>
+          <span className="hero-v2-pill hero-v2-pill-teal">UI/UX Designer</span>
         </div>
 
-        {/* Headline — muncul kata per kata */}
-        <h2 className="sb-headline" aria-label="I design & build software that gets out of your way.">
-          {LINE_1.map((w, i) => (
-            <React.Fragment key={`a${i}`}>
-              <span className="sb-word" data-in aria-hidden="true" style={inDelay(WORD_START + i * WORD_STEP)}>{w}</span>{' '}
-            </React.Fragment>
-          ))}
-          <span className="sb-word" data-in aria-hidden="true" style={inDelay(WORD_START + LINE_1.length * WORD_STEP)}>
-            <Target className="sb-headline-icon" />
-          </span>
-          <br />
-          {LINE_2.map((w, i) => (
-            <React.Fragment key={`b${i}`}>
-              <span
-                className="sb-word"
-                data-in
-                aria-hidden="true"
-                style={inDelay(WORD_START + (LINE_1.length + 1 + i) * WORD_STEP)}
-              >
-                {w}
-              </span>{' '}
-            </React.Fragment>
-          ))}
-          <span
-            className="sb-word sb-headline-emoji"
-            data-in
-            aria-hidden="true"
-            style={inDelay(WORD_START + (LINE_1.length + 1 + LINE_2.length) * WORD_STEP)}
-          >
-            🌸
-          </span>
-        </h2>
+        {/* Headline */}
+        <h1 className="hero-v2-headline" data-v2-in style={{ '--v2-delay': '240ms' } as React.CSSProperties}>
+          I design &amp; build software that<br />gets out of your way.
+        </h1>
 
         {/* CTA */}
-        <a href="#about" className="sb-cta" data-in style={inDelay(1900)}>
-          <span className="sb-cta-icon"><ArrowUpRight className="w-4 h-4" /></span>
-          ABOUT ME
+        <a
+          href="#about"
+          className="hero-v2-cta cursor-target"
+          data-v2-in
+          style={{ '--v2-delay': '360ms' } as React.CSSProperties}
+        >
+          ABOUT ME <span className="hero-v2-arrow">→</span>
         </a>
       </div>
 
-      {/* Wavy hand-drawn divider — tergambar dari kiri ke kanan */}
-      <svg className="sb-divider" viewBox="0 0 1200 40" preserveAspectRatio="none">
-        <path className="sb-divider-path" pathLength={1} d="M0,20 Q300,0 600,20 T1200,20" fill="none" stroke="#141414" strokeWidth="1.5" />
+      {/* ── Left floating card ──────────────────────────────────── */}
+      <div className="hero-v2-card hero-v2-card-left" data-v2-in style={{ '--v2-delay': '480ms' } as React.CSSProperties}>
+        <div className="hero-v2-browser-bar">
+          <span className="hero-v2-dot hero-v2-dot-r" />
+          <span className="hero-v2-dot hero-v2-dot-y" />
+          <span className="hero-v2-dot hero-v2-dot-g" />
+        </div>
+        <p className="hero-v2-card-text">Better code, better experiences.</p>
+        {/* Curved arrow */}
+        <svg className="hero-v2-arrow-svg hero-v2-arrow-right" viewBox="0 0 60 50" fill="none">
+          <path d="M4 4 C20 4, 52 20, 52 44" stroke="#141414" strokeWidth="2" strokeLinecap="round" fill="none"/>
+          <path d="M44 38 L52 44 L58 36" stroke="#141414" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      {/* ── Right floating card ─────────────────────────────────── */}
+      <div className="hero-v2-card hero-v2-card-right" data-v2-in style={{ '--v2-delay': '560ms' } as React.CSSProperties}>
+        <div className="hero-v2-work-row">
+          <span className="hero-v2-work-text">Let's work<br />together</span>
+          <span className="hero-v2-work-toggle" />
+        </div>
+        {/* Cursor icon */}
+        <svg className="hero-v2-cursor-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M4 2L4 18L8.5 13.5L12 20L14 19L10.5 12.5L17 12L4 2Z" fill="#141414"/>
+        </svg>
+        {/* Curved arrow */}
+        <svg className="hero-v2-arrow-svg hero-v2-arrow-left" viewBox="0 0 60 50" fill="none">
+          <path d="M56 4 C40 4, 8 20, 8 44" stroke="#141414" strokeWidth="2" strokeLinecap="round" fill="none"/>
+          <path d="M16 38 L8 44 L2 36" stroke="#141414" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        </svg>
+      </div>
+
+      {/* ── Bottom wavy divider ─────────────────────────────────── */}
+      <svg className="hero-v2-divider" viewBox="0 0 1200 40" preserveAspectRatio="none">
+        <path
+          className="hero-v2-divider-path"
+          pathLength={1}
+          d="M0,20 Q300,0 600,20 T1200,20"
+          fill="none"
+          stroke="#e5e7eb"
+          strokeWidth="1.5"
+        />
       </svg>
     </section>
   );
