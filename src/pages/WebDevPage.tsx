@@ -30,6 +30,18 @@ interface WebProject {
 
 const WEB_PROJECTS: WebProject[] = [
   {
+    id: 'dk-website',
+    title: 'DK Website',
+    tagline: 'Modern culinary and food service landing page built with React and Tailwind CSS v4.',
+    category: 'landing',
+    categoryLabel: 'Landing Page',
+    coverImage: '/assets/creative/dkwebsite.png',
+    tech: ['React', 'React DOM', 'TypeScript', 'Tailwind CSS v4'],
+    demoUrl: 'https://dapoerkuliner.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---DK-Landing-Page',
+    displayUrl: 'dapoerkuliner.vercel.app',
+  },
+  {
     id: 'banksampah',
     title: 'Bank Sampah Digital',
     tagline: 'Enterprise digital waste management platform with admin dashboard, transaction flows, and role authentication.',
@@ -76,18 +88,6 @@ const WEB_PROJECTS: WebProject[] = [
     demoUrl: 'https://project-landing-page-orastrix.vercel.app/',
     githubUrl: 'https://github.com/MelvinnS/PROJECT---Landing-Page-Orastrix',
     displayUrl: 'orastrix-landing.vercel.app',
-  },
-  {
-    id: 'portfolio',
-    title: 'Melvin Andrea Portfolio',
-    tagline: 'Creative developer personal portfolio featuring physics lanyard, 3D cards, and editorial layouts.',
-    category: 'frontend',
-    categoryLabel: 'Personal Portfolio',
-    coverImage: '/assets/creative/portofolio.png',
-    tech: ['React', 'TypeScript', 'Tailwind v4', 'Vite'],
-    demoUrl: 'https://project-portofolio-ten-rosy.vercel.app/',
-    githubUrl: 'https://github.com/MelvinnS/PROJECT---PortofolioV2',
-    displayUrl: 'melvin-portfolio.vercel.app',
   },
   {
     id: 'restofinder',
