@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   MessageSquare,
   Send,
@@ -26,6 +27,8 @@ interface CommentItem {
 
 export const GuestbookPage: React.FC = () => {
   const { go } = usePageTransition();
+  const [searchParams] = useSearchParams();
+  const isAdminParam = searchParams.get('admin') === '1';
 
   // Form states
   const [name, setName] = useState('');
@@ -190,93 +193,95 @@ export const GuestbookPage: React.FC = () => {
             Tinggalkan pesan, salam, atau kesan santai di buku tamu digital ini. Semua komentar ditampilkan secara publik dengan balasan langsung dari saya.
           </p>
 
-          {/* Admin Switch Bar */}
-          <div className="gb-admin-toggle-bar">
-            <div className="gb-admin-badge">
-              <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
-              <span>Owner Space</span>
-            </div>
+          {/* Admin Switch Bar - Only rendered if ?admin=1 in URL */}
+          {isAdminParam && (
+            <div className="gb-admin-toggle-bar">
+              <div className="gb-admin-badge">
+                <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Owner Space</span>
+              </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              {adminMode ? (
-                <>
-                  <input
-                    type="password"
-                    placeholder="Enter Admin Password"
-                    value={adminPassword}
-                    onChange={(e) => setAdminPassword(e.target.value)}
-                    style={{
-                      padding: '0.35rem 0.75rem',
-                      border: '1.5px solid #141414',
-                      borderRadius: '8px',
-                      fontSize: '0.78rem',
-                      fontFamily: 'inherit',
-                    }}
-                  />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                {adminMode ? (
+                  <>
+                    <input
+                      type="password"
+                      placeholder="Enter Admin Password"
+                      value={adminPassword}
+                      onChange={(e) => setAdminPassword(e.target.value)}
+                      style={{
+                        padding: '0.35rem 0.75rem',
+                        border: '1.5px solid #141414',
+                        borderRadius: '8px',
+                        fontSize: '0.78rem',
+                        fontFamily: 'inherit',
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (adminPassword.trim()) {
+                          setAdminAuthenticated(true);
+                          alert('Mode admin aktif! Tombol "Balas" kini tersedia di tiap komentar.');
+                        } else {
+                          alert('Masukkan password admin terlebih dahulu.');
+                        }
+                      }}
+                      style={{
+                        background: adminAuthenticated ? '#00C274' : '#141414',
+                        color: '#fff',
+                        border: '1.5px solid #141414',
+                        borderRadius: '8px',
+                        padding: '0.35rem 0.8rem',
+                        fontSize: '0.78rem',
+                        fontWeight: 800,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {adminAuthenticated ? 'Active' : 'Unlock'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAdminMode(false);
+                        setAdminAuthenticated(false);
+                        setAdminPassword('');
+                      }}
+                      style={{
+                        background: '#fff',
+                        border: '1.5px solid #141414',
+                        borderRadius: '8px',
+                        padding: '0.35rem 0.7rem',
+                        fontSize: '0.75rem',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Exit
+                    </button>
+                  </>
+                ) : (
                   <button
                     type="button"
-                    onClick={() => {
-                      if (adminPassword.trim()) {
-                        setAdminAuthenticated(true);
-                        alert('Mode admin aktif! Tombol "Balas" kini tersedia di tiap komentar.');
-                      } else {
-                        alert('Masukkan password admin terlebih dahulu.');
-                      }
-                    }}
+                    onClick={() => setAdminMode(true)}
                     style={{
-                      background: adminAuthenticated ? '#00C274' : '#141414',
-                      color: '#fff',
+                      background: '#f3f4f6',
                       border: '1.5px solid #141414',
                       borderRadius: '8px',
-                      padding: '0.35rem 0.8rem',
-                      fontSize: '0.78rem',
+                      padding: '0.35rem 0.75rem',
+                      fontSize: '0.75rem',
                       fontWeight: 800,
                       cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
                     }}
                   >
-                    {adminAuthenticated ? 'Active' : 'Unlock'}
+                    <Lock className="w-3.5 h-3.5" /> Admin Login
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setAdminMode(false);
-                      setAdminAuthenticated(false);
-                      setAdminPassword('');
-                    }}
-                    style={{
-                      background: '#fff',
-                      border: '1.5px solid #141414',
-                      borderRadius: '8px',
-                      padding: '0.35rem 0.7rem',
-                      fontSize: '0.75rem',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Exit
-                  </button>
-                </>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setAdminMode(true)}
-                  style={{
-                    background: '#f3f4f6',
-                    border: '1.5px solid #141414',
-                    borderRadius: '8px',
-                    padding: '0.35rem 0.75rem',
-                    fontSize: '0.75rem',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 4,
-                  }}
-                >
-                  <Lock className="w-3.5 h-3.5" /> Admin Login
-                </button>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </header>
 
         {/* ── FORM CARD ── */}
@@ -440,7 +445,7 @@ export const GuestbookPage: React.FC = () => {
                 )}
 
                 {/* Admin Mode: Balas Button & Form */}
-                {adminAuthenticated && (
+                {isAdminParam && adminAuthenticated && (
                   <div className="gb-admin-reply-form">
                     {replyingId === comment.id ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
