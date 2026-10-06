@@ -44,7 +44,7 @@ const WEB_PROJECTS: WebProject[] = [
   {
     id: 'banksampah',
     title: 'Bank Sampah Digital',
-    tagline: 'Enterprise digital waste management platform with admin dashboard, transaction flows, and role authentication.',
+    tagline: 'Digital waste management platform - customers deposit recyclable waste, admins manage transactions. • Admin login: admin_banksampah / admin123', 
     category: 'fullstack',
     categoryLabel: 'Full-Stack App',
     coverImage: '/assets/creative/banksampahcover.png',
@@ -84,7 +84,7 @@ const WEB_PROJECTS: WebProject[] = [
     category: 'landing',
     categoryLabel: 'Landing Page',
     coverImage: '/assets/creative/orastrix.png',
-    tech: ['React', 'TypeScript', 'CSS3', 'Vercel'],
+    tech: ['HTML', 'CSS', 'JavaScript'],
     demoUrl: 'https://project-landing-page-orastrix.vercel.app/',
     githubUrl: 'https://github.com/MelvinnS/PROJECT---Landing-Page-Orastrix',
     displayUrl: 'orastrix-landing.vercel.app',
