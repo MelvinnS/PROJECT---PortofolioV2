@@ -32,7 +32,7 @@ const WEB_PROJECTS: WebProject[] = [
   {
     id: 'dk-website',
     title: 'DK Website',
-    tagline: 'Modern culinary and food service landing page built with React and Tailwind CSS v4.',
+    tagline: 'Catering & food service landing page - browse menu packages, check pricing, and book catering for any event in just a few clicks.',
     category: 'landing',
     categoryLabel: 'Landing Page',
     coverImage: '/assets/creative/dkwebsite.png',
