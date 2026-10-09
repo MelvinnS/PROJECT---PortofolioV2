@@ -30,6 +30,18 @@ interface WebProject {
 
 const WEB_PROJECTS: WebProject[] = [
   {
+    id: 'orastrix-v2',
+    title: 'Orastrix V2',
+    tagline: 'SaaS product platform & modern website interface built for seamless user experience and product showcases.',
+    category: 'landing',
+    categoryLabel: 'Landing Page',
+    coverImage: '/assets/creative/orastrixv2.png',
+    tech: ['React JS', 'Tailwind CSS', 'Vite', 'Vercel'],
+    demoUrl: 'https://orastrix.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/WEB---Orastrix',
+    displayUrl: 'orastrix.vercel.app',
+  },
+  {
     id: 'dk-website',
     title: 'DK Website',
     tagline: 'Catering & food service landing page - browse menu packages, check pricing, and book catering for any event in just a few clicks.',
@@ -76,18 +88,6 @@ const WEB_PROJECTS: WebProject[] = [
     demoUrl: 'https://template-4gf.vercel.app/',
     githubUrl: 'https://github.com/MelvinnS/FORSALE---Template-for-gf',
     displayUrl: 'template-4gf.vercel.app',
-  },
-  {
-    id: 'orastrix-v2',
-    title: 'Orastrix V2',
-    tagline: 'SaaS product platform & modern website interface built for seamless user experience and product showcases.',
-    category: 'landing',
-    categoryLabel: 'Landing Page',
-    coverImage: '/assets/creative/orastrixv2.png',
-    tech: ['React JS', 'Tailwind CSS', 'Vite', 'Vercel'],
-    demoUrl: 'https://orastrix.vercel.app/',
-    githubUrl: 'https://github.com/MelvinnS/WEB---Orastrix',
-    displayUrl: 'orastrix.vercel.app',
   },
   {
     id: 'orastrix',
