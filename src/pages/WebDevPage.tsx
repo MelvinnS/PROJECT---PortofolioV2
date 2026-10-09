@@ -78,6 +78,18 @@ const WEB_PROJECTS: WebProject[] = [
     displayUrl: 'template-4gf.vercel.app',
   },
   {
+    id: 'orastrix-v2',
+    title: 'Orastrix V2',
+    tagline: 'SaaS product platform & modern website interface built for seamless user experience and product showcases.',
+    category: 'landing',
+    categoryLabel: 'Landing Page',
+    coverImage: '/assets/creative/orastrixv2.png',
+    tech: ['React JS', 'Tailwind CSS', 'Vite', 'Vercel'],
+    demoUrl: 'https://orastrix.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/WEB---Orastrix',
+    displayUrl: 'orastrix.vercel.app',
+  },
+  {
     id: 'orastrix',
     title: 'Orastrix Enterprise',
     tagline: 'High-conversion enterprise product landing page built with modern web technologies and animated sections.',
@@ -164,7 +176,7 @@ export const WebDevPage: React.FC = () => {
               className="wd-sticker wd-sticker-gold"
               onClick={() => triggerSticker('⚡ All builds are live & deployed on Vercel!')}
             >
-              <Sparkles className="w-3.5 h-3.5" /> 6 Live Builds
+              <Sparkles className="w-3.5 h-3.5" /> {WEB_PROJECTS.length} Live Builds
             </span>
             <span
               className="wd-sticker wd-sticker-cyan"
