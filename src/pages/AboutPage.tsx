@@ -17,6 +17,8 @@ import {
   Medal,
   Quote,
   ArrowUpRight,
+  ZoomIn,
+  X,
 } from 'lucide-react';
 import { useRiseOnScroll } from '../hooks/useRiseOnScroll';
 import { usePageTransition } from '../components/layout/PageTransition';
@@ -80,36 +82,51 @@ interface CertEntry {
   tag: string;
   title: string;
   subtitle: string;
+  image: string;
+  issuer: string;
+  year: string;
 }
 
 const CERTIFICATES: CertEntry[] = [
   {
-    icon: Trophy,
+    icon: Medal,
     tone: 'yellow',
+    tag: 'Certification',
+    title: 'Information Technology Specialist: Artificial Intelligence',
+    subtitle: 'Certiport — A Pearson VUE Business & CertNexus',
+    image: '/assets/certificates/Serkom.jpg',
+    issuer: 'Certiport / CertNexus',
+    year: '2026',
+  },
+  {
+    icon: Trophy,
+    tone: 'blue',
     tag: 'Achievement',
-    title: 'Semi Finalist',
-    subtitle: 'Business Plan Competition Creation 2025',
+    title: 'Semi Finalist — Business Plan Competition',
+    subtitle: 'Creation Festival 2025 • CBSA Universitas Indonesia',
+    image: '/assets/certificates/semifinal.png',
+    issuer: 'CBSA Universitas Indonesia',
+    year: '2025',
   },
   {
     icon: Clapperboard,
     tone: 'pink',
-    tag: 'Achievement',
-    title: 'Ratu Film Festival 2025',
-    subtitle: 'Radar Tulungagung',
+    tag: 'Film Award',
+    title: 'Peserta Ratu Film Festival 2025',
+    subtitle: 'Kategori Pelajar — Karya Film: "Ombak Harapan"',
+    image: '/assets/certificates/memo.jpg',
+    issuer: 'Radar Tulungagung & Memo Production',
+    year: '2025',
   },
   {
     icon: Presentation,
-    tone: 'blue',
-    tag: 'Collection',
-    title: 'Seminar & Webinar Certificates',
-    subtitle: 'From various seminars and webinars I have attended',
-  },
-  {
-    icon: Medal,
     tone: 'green',
-    tag: 'Collection',
-    title: 'Competition & Creative Certificates',
-    subtitle: 'From various competitions and creative works I have joined',
+    tag: 'Competition',
+    title: 'Peserta Business Plan — IMPACT 2025',
+    subtitle: 'LKI Fakultas Kedokteran Universitas Brawijaya',
+    image: '/assets/certificates/impact.png',
+    issuer: 'FK Universitas Brawijaya',
+    year: '2025',
   },
 ];
 
@@ -124,10 +141,16 @@ export const AboutPage: React.FC = () => {
   // ── Skill popup (bottom sheet) ──
   const [openSkill, setOpenSkill] = useState<number | null>(null);
 
+  // ── Certificate Lightbox Modal ──
+  const [activeCert, setActiveCert] = useState<CertEntry | null>(null);
+
   useEffect(() => {
-    if (openSkill === null) return;
+    if (openSkill === null && activeCert === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenSkill(null);
+      if (e.key === 'Escape') {
+        setOpenSkill(null);
+        setActiveCert(null);
+      }
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -135,7 +158,7 @@ export const AboutPage: React.FC = () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [openSkill]);
+  }, [openSkill, activeCert]);
 
   return (
     <div className="ap-page">
@@ -269,15 +292,47 @@ export const AboutPage: React.FC = () => {
             {CERTIFICATES.map((c, i) => {
               const Icon = c.icon;
               return (
-                <div key={c.title} className="ap-cert-card">
-                  <span className={`ap-cert-icon ap-tone-${c.tone}`} data-rise style={delay((i % 2) * 90)}>
-                    <Icon className="w-5 h-5" />
-                  </span>
-                  <div className="ap-cert-text" data-rise style={delay((i % 2) * 90 + 100)}>
-                    <div className="ap-cert-top">
-                      <h3 className="ap-cert-title">{c.title}</h3>
-                      <span className="ap-cert-badge">{c.tag}</span>
+                <div
+                  key={c.title}
+                  className="ap-cert-card cursor-target"
+                  onClick={() => setActiveCert(c)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveCert(c);
+                    }
+                  }}
+                  data-rise
+                  style={delay((i % 2) * 90)}
+                >
+                  {/* Certificate Image Frame */}
+                  <div className="ap-cert-img-wrap">
+                    <img
+                      src={c.image}
+                      alt={c.title}
+                      className="ap-cert-img"
+                      loading="lazy"
+                    />
+                    <div className="ap-cert-overlay">
+                      <span className="ap-cert-zoom-btn">
+                        <ZoomIn className="w-4 h-4" /> View Certificate
+                      </span>
                     </div>
+                    <span className="ap-cert-badge-floating">{c.year}</span>
+                  </div>
+
+                  {/* Certificate Details */}
+                  <div className="ap-cert-content">
+                    <div className="ap-cert-top">
+                      <span className={`ap-cert-icon ap-tone-${c.tone}`}>
+                        <Icon className="w-4 h-4" />
+                      </span>
+                      <span className="ap-cert-badge">{c.tag}</span>
+                      <span className="ap-cert-issuer">{c.issuer}</span>
+                    </div>
+                    <h3 className="ap-cert-title">{c.title}</h3>
                     <p className="ap-cert-subtitle">{c.subtitle}</p>
                   </div>
                 </div>
@@ -285,6 +340,46 @@ export const AboutPage: React.FC = () => {
             })}
           </div>
         </section>
+
+        {/* ══════════ CERTIFICATE LIGHTBOX MODAL ══════════ */}
+        {activeCert && (
+          <div
+            className="ap-cert-modal-backdrop"
+            onClick={() => setActiveCert(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeCert.title}
+          >
+            <div
+              className="ap-cert-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="ap-cert-modal-header">
+                <div>
+                  <span className="ap-cert-modal-badge">{activeCert.tag} • {activeCert.year}</span>
+                  <h3 className="ap-cert-modal-title">{activeCert.title}</h3>
+                  <p className="ap-cert-modal-sub">{activeCert.subtitle}</p>
+                </div>
+                <button
+                  type="button"
+                  className="ap-cert-modal-close"
+                  onClick={() => setActiveCert(null)}
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="ap-cert-modal-img-wrap">
+                <img
+                  src={activeCert.image}
+                  alt={activeCert.title}
+                  className="ap-cert-modal-img"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ══════════ SKILL POPUP (bottom sheet) ══════════ */}
         <div
