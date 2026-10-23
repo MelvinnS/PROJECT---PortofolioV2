@@ -230,6 +230,64 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'w-4 h-4' 
         </svg>
       );
 
+    case 'Next.js':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <circle cx="12" cy="12" r="11" fill="#000" stroke="#333" strokeWidth="1" />
+          <path d="M14.5 8.5v7m-5-7v7l7.5-7.5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+
+    case 'NestJS':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <path d="M19.4 6.8c-.8-1.5-2.2-2.7-3.8-3.2-1.8-.6-3.8-.3-5.4.7L6 7.5c-1.3.9-2.2 2.3-2.6 3.9-.4 1.6-.2 3.3.7 4.7.9 1.4 2.3 2.4 3.9 2.8 1.6.4 3.3.1 4.7-.7l4.3-3.1c1.2-.9 2-2.2 2.3-3.7.3-1.6.1-3.2-.6-4.6z" fill="#E0234E" />
+          <path d="M10.5 7.5l-4 3c-.7.5-1.1 1.3-1.3 2.1-.2.8-.1 1.7.4 2.4.5.7 1.2 1.2 2 1.4.8.2 1.7.1 2.4-.4l4.2-3.1c.7-.5 1.1-1.3 1.3-2.1.2-.8.1-1.7-.4-2.4-.5-.7-1.2-1.2-2-1.4-.8-.2-1.7-.1-2.6.5z" fill="#fff" />
+        </svg>
+      );
+
+    case 'Prisma':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <path d="M12.8 2.3l8.4 16.5c.3.6.1 1.4-.5 1.8-.2.1-.4.2-.7.2H4c-.7 0-1.3-.6-1.3-1.3 0-.3.1-.5.2-.7L11.3 2.3c.3-.6 1-.8 1.5-.5.2.1.4.3.5.5z" fill="#2D3748" />
+          <path d="M12 4.5l6.5 13.5H5.5L12 4.5z" fill="#5A67D8" />
+        </svg>
+      );
+
+    case 'PostgreSQL':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 2.1 7.1 5.2 8.8l1.3-2.5C6.4 17 5 14.7 5 12c0-3.9 3.1-7 7-7s7 3.1 7 7c0 2.7-1.4 5-3.5 6.3l1.3 2.5C19.9 19.1 22 15.8 22 12c0-5.5-4.5-10-10-10z" fill="#336791" />
+          <path d="M12 7c-2.8 0-5 2.2-5 5 0 1.9 1.1 3.6 2.7 4.4L11 14c-.6-.4-1-1.1-1-2 0-1.1.9-2 2-2s2 .9 2 2c0 .9-.4 1.6-1 2l1.3 2.4c1.6-.8 2.7-2.5 2.7-4.4 0-2.8-2.2-5-5-5z" fill="#336791" />
+        </svg>
+      );
+
+    case 'MySQL':
+    case 'MariaDB':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <circle cx="12" cy="12" r="10.5" fill="#00758F" />
+          <path d="M6 16l3-8 3 5 3-5 3 8" stroke="#F29111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+
+    case 'Framer Motion':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <path d="M4 2h16v8l-8 8V10H4V2z" fill="#0055FF" />
+          <path d="M4 10h8v8H4v-8z" fill="#0055FF" />
+          <path d="M12 18l8-8v12l-8-4z" fill="#FF0055" />
+        </svg>
+      );
+
+    case 'GSAP':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none">
+          <circle cx="12" cy="12" r="10.5" fill="#0AE448" />
+          <text x="5" y="16" fill="#000" fontSize="8" fontWeight="900" fontFamily="sans-serif">GSAP</text>
+        </svg>
+      );
+
     default:
       return (
         <div className={`${className} rounded-full bg-blue-500/20 flex items-center justify-center text-[10px] text-blue-400 font-bold`}>

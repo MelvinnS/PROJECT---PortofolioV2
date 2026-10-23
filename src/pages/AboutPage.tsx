@@ -6,6 +6,8 @@ import {
   Palette,
   Wrench,
   Globe,
+  Server,
+  Database,
   LayoutTemplate,
   PenTool,
   Camera,
@@ -55,6 +57,8 @@ const SKILL_DESCRIPTIONS: Record<string, string> = {
 const CATEGORY_ICON: Record<TechStackCategory['categoryIcon'], React.ElementType> = {
   code: Code2,
   smartphone: Smartphone,
+  server: Server,
+  database: Database,
   wrench: Wrench,
   globe: Globe,
   palette: Palette,
@@ -63,6 +67,8 @@ const CATEGORY_ICON: Record<TechStackCategory['categoryIcon'], React.ElementType
 const CATEGORY_TONE: Record<TechStackCategory['categoryIcon'], string> = {
   code: 'yellow',
   smartphone: 'blue',
+  server: 'green',
+  database: 'cyan',
   globe: 'green',
   wrench: 'orange',
   palette: 'pink',

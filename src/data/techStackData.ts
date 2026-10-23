@@ -1,27 +1,27 @@
 export interface TechStackCategory {
   title: string;
-  categoryIcon: 'code' | 'smartphone' | 'wrench' | 'globe' | 'palette';
+  categoryIcon: 'code' | 'smartphone' | 'server' | 'database' | 'wrench' | 'globe' | 'palette';
   items: string[];
 }
 
 export const techStackData: TechStackCategory[] = [
   {
-    title: 'Frontend',
+    title: 'Frontend & Frameworks',
     categoryIcon: 'code',
-    items: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS']
+    items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'HTML', 'CSS']
   },
   {
-    title: 'Mobile',
+    title: 'Backend & Database',
+    categoryIcon: 'server',
+    items: ['NestJS', 'Prisma', 'PostgreSQL', 'MySQL', 'MariaDB', 'REST API']
+  },
+  {
+    title: 'Mobile Development',
     categoryIcon: 'smartphone',
-    items: ['Flutter', 'Dart',]
+    items: ['Flutter', 'Dart']
   },
   {
-    title: 'API & Integration',
-    categoryIcon: 'globe',
-    items: ['REST API']
-  },
-  {
-    title: 'Development Tools',
+    title: 'Development Tools & AI',
     categoryIcon: 'wrench',
     items: ['VS Code', 'GitHub', 'Postman', 'Vercel', 'Antigravity', 'Claude', 'Vite', 'npm']
   },
