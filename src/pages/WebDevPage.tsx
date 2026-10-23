@@ -30,6 +30,18 @@ interface WebProject {
 
 const WEB_PROJECTS: WebProject[] = [
   {
+    id: 'sevima-presence',
+    title: 'SEVIMA Presence',
+    tagline: 'Class attendance & academic activity dashboard portal for monitoring lectures, student presence, and attendance recap analytics.',
+    category: 'fullstack',
+    categoryLabel: 'Web App / Portal',
+    coverImage: '/assets/creative/sevimapresence.png',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    demoUrl: 'https://sevimapresence.vercel.app/',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---TechTest-Sevima',
+    displayUrl: 'sevimapresence.vercel.app',
+  },
+  {
     id: 'orastrix-v2',
     title: 'Orastrix V2',
     tagline: 'SaaS product platform & modern website interface built for seamless user experience and product showcases.',
