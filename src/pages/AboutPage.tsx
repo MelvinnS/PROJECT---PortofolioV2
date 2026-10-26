@@ -171,7 +171,7 @@ export const AboutPage: React.FC = () => {
               <ProfileCard
                 avatarUrl="/assets/projects/profile.jpg"
                 name="Melvin Andrea"
-                title="Frontend & Mobile Developer"
+                title="Website & Mobile Developer"
                 handle="melvinandrea"
                 status="Available for opportunities"
                 contactText="Contact Me"

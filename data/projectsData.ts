@@ -189,7 +189,7 @@ export const projectsData: Project[] = [
     figmaUrl: 'https://www.figma.com/design/qn6pX2Gk86Cw3HVtuzgScA/Prototype-TrashBack?node-id=0-1&t=9J9Mzmis7wZ6PRj0-1',
     problem: 'Conventional water services often require customers to visit service offices or use scattered communication channels, making the process less efficient.',
     solution: 'The application centralizes essential services into one mobile platform with an intuitive interface, making customer interactions faster and more convenient.',
-    role: 'Frontend & Mobile Developer / UI/UX Designer',
+    role: 'Website & Mobile Developer / UI/UX Designer',
     roleTasks: [
       'Designed the complete UI/UX in Figma.',
       'Developed the entire Flutter application independently.',
