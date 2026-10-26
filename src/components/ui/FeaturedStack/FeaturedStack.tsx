@@ -50,7 +50,7 @@ const FOLDERS: FolderCard[] = [
     title: 'Web Developer',
     description: 'Responsive websites and web platforms built with React, TypeScript and modern styling.',
     meta: 'REACT · TYPESCRIPT',
-    image: featuredProjectsData[0]?.coverImage ?? '/assets/creative/banksampahcover.png',
+    image: '/assets/projects/coverORASTRIX.png',
     bg: '#F5B82A', // Yellow/Gold
     fg: '#141414',
     tabBg: '#141414', // Black
