@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
         <div className="sb-tags-row">
           <span className="sb-tag sb-tag-yellow" data-in style={inDelay(950)}>Frontend Developer</span>
           <span className="sb-dot-text" data-in style={inDelay(1050)}>
-            <span className="sb-dot" /> OPEN FOR OPPORTUNITIES
+            <span className="sb-dot" /> Website Developer
           </span>
           <span className="sb-tag sb-tag-mint" data-in style={inDelay(1150)}>UI/UX Designer</span>
         </div>

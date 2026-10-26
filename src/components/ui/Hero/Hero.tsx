@@ -87,7 +87,7 @@ export const Hero: React.FC = () => {
         {/* Three pills */}
         <div className="hero-v2-pills" data-v2-in style={{ '--v2-delay': '120ms' } as React.CSSProperties}>
           <span className="hero-v2-pill hero-v2-pill-yellow">Frontend Developer</span>
-          <span className="hero-v2-pill hero-v2-pill-outline">OPEN FOR OPPORTUNITIES</span>
+          <span className="hero-v2-pill hero-v2-pill-outline">Website Developer</span>
           <span className="hero-v2-pill hero-v2-pill-teal">UI/UX Designer</span>
         </div>
 
