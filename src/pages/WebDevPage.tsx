@@ -30,6 +30,18 @@ interface WebProject {
 
 const WEB_PROJECTS: WebProject[] = [
   {
+    id: 'dk-pesan',
+    title: 'DK Catering — Pesan Menu',
+    tagline: 'Online daily catering & homemade food ordering platform featuring interactive menu browsing, cart management, and seamless order dispatch.',
+    category: 'fullstack',
+    categoryLabel: 'Full-Stack App',
+    coverImage: '/assets/creative/pesanmakan.png',
+    tech: ['Next.js 14', 'React 18', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+    demoUrl: 'https://dkpesan.vercel.app',
+    githubUrl: 'https://github.com/MelvinnS/PROJECT---PesanCattering',
+    displayUrl: 'dkpesan.vercel.app',
+  },
+  {
     id: 'sevima-presence',
     title: 'SEVIMA Presence',
     tagline: 'Class attendance & academic activity dashboard portal for monitoring lectures, student presence, and attendance recap analytics.',
